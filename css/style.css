@@ -162,6 +162,57 @@ section {
     transition: 0.4s;
 }
 
+.main-header.mobile-menu-open .main-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 80px; /* Ajuste conforme a altura do seu header */
+    left: 0;
+    width: 100%;
+    background-color: var(--background-light);
+    padding: 20px 0;
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.main-header.mobile-menu-open .main-nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.main-header.mobile-menu-open .header-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    width: 90%;
+}
+
+.main-header.mobile-menu-open .header-actions .btn {
+    display: block; /* Garante que o botão seja exibido */
+    width: 100%;
+    text-align: center;
+}
+
+/* Animação do ícone do menu hambúrguer para "X" */
+.main-header.mobile-menu-open .hamburger-menu span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.main-header.mobile-menu-open .hamburger-menu span:nth-child(2) {
+    opacity: 0;
+}
+
+.main-header.mobile-menu-open .hamburger-menu span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
 
 /* Hero Section */
 .hero {
@@ -568,6 +619,14 @@ section {
     h2 { font-size: 2rem; }
     section { padding: 60px 0; }
 
+    .main-nav, .header-actions {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+
     .impact-feature .container,
     .social-commitment .container,
     .step-by-step .container,
@@ -583,8 +642,91 @@ section {
 }
 
 @media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.8rem; }
+    section { padding: 50px 0; }
+
+    .hero { padding: 60px 0; }
+    .hero-content h1 {
+        max-width: 100%;
+    }
+
     .hero-benefits { flex-direction: column; align-items: center; }
     .experience-cards, .donate-cards { grid-template-columns: 1fr; }
     .gallery { grid-template-columns: 1fr; }
     .results .container { flex-direction: column; text-align: center; }
+
+    .commitment-quote {
+        flex-direction: column;
+    }
+
+    .commitment-quote img {
+        width: 100%;
+        height: 200px;
+    }
+
+    .quote-content {
+        padding: 30px;
+    }
+
+    .calculator-content {
+        gap: 30px;
+    }
+
+    .calculator-placeholder, .calculator {
+        padding: 25px;
+    }
+
+    .tax-deduction .container {
+        gap: 30px;
+    }
+
+    .deduction-tabs {
+        padding: 20px;
+    }
+
+    .form-container {
+        padding: 25px;
+    }
+
+    .investment-form form {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content, .footer-links {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.6rem; }
+    h3 { font-size: 1.2rem; }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .benefit-item {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .main-header .logo img {
+        height: 40px;
+    }
+
+    .main-header.mobile-menu-open .main-nav {
+        top: 70px; /* Ajuste para a nova altura do header */
+    }
+
+    .results .container {
+        padding: 30px 20px;
+    }
+
+    .results-content h2 {
+        font-size: 1.8rem;
+    }
 }
