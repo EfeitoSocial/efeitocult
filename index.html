@@ -63,10 +63,13 @@
                     <p>Este projeto está previsto ser realizado no Shopping Jockey Club, em Curitiba, com duração de XX meses.</p>
                 </div>
                 <div class="commitment-quote">
-                    <img src="https://via.placeholder.com/150" alt="Foto da pessoa da citação">
-                    <blockquote>
-                        <p>"Acreditamos que o acesso a essas experiências é fundamental para o desenvolvimento de mentes inovadoras e cidadãos conscientes."</p>
-                    </blockquote>
+                    <img src="/imgs/mariana.png" alt="Foto da pessoa da citação">
+                    <div class="quote-content">
+                        <span class="quote-symbol">“</span>
+                        <blockquote>
+                            <p>Acreditamos que o acesso a essas experiências é fundamental para o desenvolvimento de mentes inovadoras e cidadãos conscientes.</p>
+                        </blockquote>
+                    </div>
                 </div>
             </div>
         </section>
@@ -76,22 +79,22 @@
                 <h2>Experiências que serão proporcionadas</h2>
                 <div class="experience-cards">
                     <div class="card">
-                        <img src="https://via.placeholder.com/300x200" alt="Visitas guiadas imersivas">
+                        <img src="imgs/Visitas guiadas imersivas.png" alt="Visitas guiadas imersivas">
                         <h3>Visitas guiadas imersivas</h3>
                         <p>Aulas interativas dentro das exposições, adaptadas para diferentes faixas etárias.</p>
                     </div>
                     <div class="card">
-                        <img src="https://via.placeholder.com/300x200" alt="Oficinas criativas">
+                        <img src="imgs/Oficinas criativas.png" alt="Oficinas criativas">
                         <h3>Oficinas criativas</h3>
                         <p>Atividades práticas que estimulam a criatividade, o raciocínio lógico e a colaboração.</p>
                     </div>
                     <div class="card">
-                        <img src="https://via.placeholder.com/300x200" alt="Acesso à tecnologia de ponta">
+                        <img src="imgs/Acesso à tecnologia de ponta.png" alt="Acesso à tecnologia de ponta">
                         <h3>Acesso à tecnologia de ponta</h3>
                         <p>Experiências com realidade virtual, aumentada e instalações interativas.</p>
                     </div>
                     <div class="card">
-                        <img src="https://via.placeholder.com/300x200" alt="Desenvolvimento de habilidades">
+                        <img src="imgs/Desenvolvimento de habilidades.png" alt="Desenvolvimento de habilidades">
                         <h3>Desenvolvimento de habilidades</h3>
                         <p>Estímulo ao pensamento crítico, resolução de problemas e curiosidade científica.</p>
                     </div>
@@ -146,8 +149,18 @@
                         <img src="imgs/imagemRecibo.png" alt="Exemplo de declaração de imposto de renda">
                     </div>
                 </div>
-                <div class="calculator-placeholder">
-                    <p>Colocar a calculadora aqui</p>
+                <div class="calculator">
+                    <form id="calculator-form" class="calculator-form">
+                        <div class="form-group">
+                            <label for="tax-due">Seu imposto devido (R$)</label>
+                            <input type="text" id="tax-due" placeholder="Ex: R$ 1.500,00">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Calcular Potencial</button>
+                    </form>
+                    <div class="calculator-result">
+                        <h3>Seu potencial de investimento social é de:</h3>
+                        <p id="investment-potential-result">R$ 0,00</p>
+                    </div>
                 </div>
             </div>
         </section>
