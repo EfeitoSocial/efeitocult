@@ -1,0 +1,1169 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap');
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #1e293b; /* Tom de preto mais suave */
+    background-color: #f8fafc;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.main-header {
+    background-color: #eee7dd; /* Cor de fundo do header na imagem */
+    padding: 15px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header .logo span {
+    font-size: 1.8em; /* Ajuste de tamanho */
+    font-weight: 800; /* Mais pesado */
+    color: #1e293b;
+    text-decoration: none;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #475569;
+    font-weight: 500; /* Peso médio */
+}
+
+.header-actions .btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.header-actions .btn-primary {
+    background-color: #ef4444; /* Tom de vermelho/laranja */
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header-actions .btn-secondary {
+    background-color: white;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+}
+
+.hamburger-menu {
+    display: none; /* Escondido por padrão */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #1e293b;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+/* Hero Section */
+.hero {
+    background-color: #fff;
+    padding: 80px 0; /* Mais espaçamento vertical */
+}
+
+.hero .container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero-content h1 {
+    font-size: 3em; /* Maior */
+    margin-bottom: 20px;
+    color: #0f172a; /* Azul bem escuro, quase preto */
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    color: #475569;
+}
+
+.hero-benefits {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.hero-benefits li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.hero-benefits li::before {
+    content: '';
+    background-color: #3b82f6; /* Azul do checkmark */
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    position: absolute;
+    left: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.hero .btn-primary {
+    background-color: #0f172a;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 8px; /* Mais arredondado */
+    font-weight: bold;
+}
+
+.hero-video {
+    flex-basis: 40%;
+    text-align: center;
+}
+
+/* Impact Feature Section */
+.impact-feature {
+    background-color: #0f172a; /* Azul bem escuro */
+    color: #f8fafc; /* Branco suave */
+    padding: 80px 60px;
+    border-radius: 24px 24px 0 0; /* Apenas cantos superiores arredondados */
+    margin: 60px 0 0; /* Remove a margem inferior */
+}
+
+.impact-feature .container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.impact-content {
+    flex: 1;
+}
+
+.impact-content h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.impact-image {
+    flex-basis: 40%;
+}
+
+.impact-image img {
+    max-width: 100%;
+    border-radius: 15px;
+    display: block;
+}
+
+/* Learning Ecosystem Section */
+.learning-ecosystem {
+    background-color: #0f172a; /* Azul bem escuro */
+    color: #f8fafc;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.learning-ecosystem h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #f8fafc;
+}
+
+.learning-ecosystem p {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    color: #cbd5e1; /* Cinza claro */
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 200px; /* Altura fixa para todas as imagens */
+    object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+    border-radius: 10px;
+}
+
+/* Social Commitment Section */
+.social-commitment {
+    padding: 80px 0;
+    background-color: #0f172a; /* Azul bem escuro */
+    color: #f8fafc;
+}
+
+.social-commitment .container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.commitment-content {
+    flex: 1;
+}
+
+.commitment-content h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #f8fafc;
+}
+
+.commitment-promo {
+    flex-basis: 40%;
+    text-align: center;
+    background-color: #1e293b;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+.commitment-promo img {
+    max-width: 100%;
+    border-radius: 15px;
+}
+
+/* Experiences Section */
+.experiences {
+    background-color: #0f172a; /* Azul bem escuro */
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+    border-radius: 0 0 24px 24px; /* Apenas cantos inferiores arredondados */
+}
+
+.experiences h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+.experience-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.experience-cards .card {
+    background-color: #e2e8f0; /* Cinza claro */
+    color: #1e293b;
+    padding: 25px;
+    border-radius: 16px;
+    flex: 1;
+    max-width: 280px;
+    text-align: left;
+}
+
+.experience-cards .card h3 {
+    margin-bottom: 10px;
+}
+
+.experiences .btn-secondary {
+    background-color: #10b981; /* Verde esmeralda */
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+}
+
+/* Investment Calculator Section */
+.investment-calculator {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.investment-calculator h2 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #0f172a;
+}
+
+.investment-calculator > .container > p {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.calculator-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.calculator-image {
+    flex-basis: 50%;
+}
+
+.calculator-image img {
+    max-width: 100%;
+}
+
+.calculator-steps {
+    flex-basis: 50%;
+}
+
+.calculator-steps .step {
+    margin-bottom: 20px;
+}
+
+.calculator-steps h3 {
+    margin-bottom: 10px;
+    color: #0f172a;
+    font-size: 1.2em;
+}
+
+.calculator-placeholder {
+    background-color: #e2e8f0;
+    padding: 40px;
+    text-align: center;
+    margin-top: 40px;
+    border-radius: 16px;
+}
+
+/* Step by Step Section */
+.step-by-step {
+    padding: 80px 0;
+    background-color: #f1f5f9;
+}
+
+.step-by-step .container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #0f172a;
+}
+
+.step-content ol {
+    list-style-position: inside;
+    margin-bottom: 20px;
+}
+
+.step-content li {
+    margin-bottom: 10px;
+}
+
+.step-image {
+    flex-basis: 40%;
+}
+
+.step-image img {
+    max-width: 100%;
+}
+
+/* Tax Deduction Section */
+.tax-deduction {
+    padding: 80px 0;
+    background-color: #f1f5f9;
+}
+
+.tax-deduction .container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.deduction-tabs {
+    flex-basis: 40%;
+}
+
+.deduction-tabs .tab {
+    background-color: #d1fae5; /* Verde claro */
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid #a7f3d0;
+}
+
+.deduction-tabs .tab .total {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.deduction-explanation {
+    flex: 1;
+}
+
+.deduction-explanation h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #0f172a;
+}
+
+/* Why Donate Section */
+.why-donate {
+    padding: 80px 0;
+    text-align: center;
+    background-color: #fff;
+}
+
+.why-donate h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #0f172a;
+}
+
+.donate-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.donate-cards .card {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 16px;
+    flex: 1;
+    max-width: 260px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 1px solid #e2e8f0;
+}
+
+/* Investment Form Section */
+.investment-form {
+    background-color: #0f172a;
+    color: #f8fafc;
+    padding: 80px 0;
+}
+
+.investment-form h2 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+.form-content {
+    display: flex;
+    gap: 40px;
+}
+
+.investment-form form {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="file"] {
+    padding: 12px;
+    border: 1px solid #334155;
+    background-color: #1e293b;
+    color: white;
+    border-radius: 8px;
+}
+
+.form-group.checkbox {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.bank-details {
+    flex-basis: 40%;
+    text-align: left;
+    background-color: #1e293b;
+    padding: 30px;
+    border-radius: 16px;
+    position: relative; /* Necessário para o posicionamento da imagem */
+    margin-top: 40px; /* Espaço para a imagem flutuar */
+}
+
+.bank-details img {
+    max-width: 180px; /* Aumenta bem mais a imagem */
+    position: absolute;
+    top: -90px; /* Ajusta a posição vertical para o novo tamanho */
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza a imagem horizontalmente */
+}
+
+.bank-details h3 {
+    margin-bottom: 15px;
+}
+
+.bank-details p {
+    margin-bottom: 10px;
+    color: #cbd5e1;
+}
+
+.bank-details a {
+    color: #3b82f6;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.9em;
+}
+
+/* Footer */
+.main-footer {
+    background-color: #0f172a;
+    color: #f8fafc;
+    padding: 80px 0 30px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.footer-logo span {
+    font-size: 1.8em;
+    font-weight: 800;
+}
+
+.footer-links {
+    display: flex;
+    gap: 40px;
+}
+
+.footer-links h4 {
+    margin-bottom: 15px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #334155;
+    padding-top: 30px;
+    font-size: 0.9em;
+    color: #94a3b8;
+}
+
+/* Results Section */
+.results {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.results .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.results-image {
+    flex-basis: 30%;
+}
+
+.results-image img {
+    max-width: 100%;
+}
+
+.results-content {
+    flex-basis: 40%;
+}
+
+.results-content h2 {
+    font-size: 2.5em;
+    color: #0f172a;
+    margin-bottom: 10px;
+}
+
+.results-content p {
+    font-size: 1.1em;
+    color: #475569;
+}
+
+/* Media Queries for Responsiveness */
+
+@media (max-width: 768px) {
+    .main-header .container {
+        flex-direction: row; /* Mantém na linha no tablet */
+        justify-content: space-between;
+    }
+
+    .hamburger-menu {
+        display: block; /* Mostra o hamburger */
+    }
+
+    .main-nav, .header-actions {
+        display: none; /* Esconde o menu e ações */
+        width: 100%;
+        text-align: center;
+    }
+
+    .main-header.mobile-menu-open .main-nav,
+    .main-header.mobile-menu-open .header-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 15px;
+    }
+
+    .main-header.mobile-menu-open .container {
+        flex-wrap: wrap;
+    }
+
+    .hero .container,
+    .impact-feature .container,
+    .social-commitment .container,
+    .calculator-content,
+    .step-by-step .container,
+    .tax-deduction .container,
+    .form-content,
+    .footer-content,
+    .results .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .hero-content h1,
+    .impact-content h2,
+    .commitment-content h2,
+    .experiences h2,
+    .investment-calculator h2,
+    .step-content h2,
+    .deduction-explanation h2,
+    .why-donate h2,
+    .investment-form h2,
+    .results-content h2 {
+        font-size: 2em;
+    }
+
+    .experience-cards,
+    .donate-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .investment-form form {
+        grid-template-columns: 1fr;
+    }
+
+    .bank-details {
+        margin-top: 20px;
+    }
+
+    .bank-details img {
+        position: static;
+        transform: none;
+        margin: 0 auto 20px;
+        display: block;
+        max-width: 150px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .main-nav ul {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .main-nav li {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .main-nav li:last-child {
+        border-bottom: none;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8em;
+    }
+
+    .hero-content p {
+        font-size: 1em;
+    }
+}
+
+/* Login Page Styles */
+.login-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.sidebar {
+    flex: 0 0 35%;
+    background-color: #0B1A4A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px;
+}
+
+.logo-sidebar {
+    max-width: 150px;
+    align-self: flex-start;
+}
+
+.illustration {
+    max-width: 100%;
+    align-self: flex-end;
+    margin-top: auto;
+}
+
+.login-form-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    padding: 40px;
+}
+
+.login-form-container {
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.logo-form {
+    max-width: 80px;
+    margin-bottom: 25px;
+}
+
+.login-form-container h1 {
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.login-form-container p {
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.login-form-container p a {
+    color: #16A34A;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-form-section .form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.login-form-section .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+    font-size: 0.9em;
+}
+
+.login-form-section .form-group label span {
+    color: #999;
+    font-weight: 400;
+}
+
+.login-form-section .form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1em;
+    background-color: #fff;
+    color: #333;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 45px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.toggle-password svg {
+    stroke: #94a3b8;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 0.9em;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.remember-me input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.remember-me label {
+    padding-left: 28px;
+    cursor: pointer;
+}
+
+.remember-me label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.remember-me input[type="checkbox"]:checked + label::before {
+    background-color: #0B1A4A;
+    border-color: #0B1A4A;
+}
+
+.remember-me input[type="checkbox"]:checked + label::after {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 50%;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.forgot-password {
+    color: #16A34A;
+    text-decoration: none;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 15px;
+    background-color: #16A34A;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #14853f;
+}
+
+.login-page-body {
+    overflow: hidden;
+}
+
+/* Styles for centering register form */
+body:not(.login-page-body) .login-container {
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Register Page Styles */
+.login-box {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+}
+
+.login-box .logo {
+    max-width: 80px;
+    margin-bottom: 25px;
+}
+
+.login-box h2 {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.login-box .input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.login-box .input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+.login-box .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.login-box .checkbox-group input[type="checkbox"] {
+    width: auto;
+    flex-shrink: 0;
+}
+
+.login-box .checkbox-group label {
+    color: #666;
+}
+
+.login-box .checkbox-group a {
+    color: #16A34A;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-box .btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #16A34A;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.login-box .btn:hover {
+    background-color: #14853f;
+}
+
+.login-box .register-link {
+    margin-top: 30px;
+    color: #666;
+}
+
+.login-box .register-link a {
+    color: #16A34A;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .login-form-section {
+        padding: 20px;
+    }
+}
+
+/* Calculator Section Styles (from dashboard) */
+.calculator-section {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.calculator-box {
+    background-color: #FFFFFF;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid #E9ECEF;
+}
+
+.calculator-box h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.calculator-box p {
+    color: #6C757D;
+    margin-bottom: 20px;
+}
+
+.calculator-box form {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+}
+
+.calculator-box form label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    flex-grow: 1;
+}
+
+.calculator-box input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #CED4DA;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.calculator-box button {
+    padding: 12px 24px;
+    background-color: #0B1A4A;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.calculator-box button:hover {
+    background-color: #1C2D6E;
+}
+
+.result-box {
+    background-color: #6C757D;
+    color: #FFFFFF;
+    padding: 24px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.result-box p {
+    font-size: 1rem;
+}
+
+.result-box h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 8px 0;
+}
+
+.result-box small {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+@media (max-width: 1200px) {
+    .calculator-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .calculator-box form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

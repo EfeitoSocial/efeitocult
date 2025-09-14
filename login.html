@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Efeito Social</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-page-body">
+    <div class="login-container">
+        <aside class="sidebar">
+            <img src="imgs/efeitologowhite.png" alt="Efeito Social Logo" class="logo-sidebar">
+        </aside>
+        <main class="login-form-section">
+            <div class="login-form-container">
+                <img src="imgs/efeitologo.png" alt="Efeito Social Logo" class="logo-form">
+                <h1>Você voltou!</h1>
+                <p>Ainda não é cadastrado? <a href="register.html">Registre-se agora</a></p>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="seu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">SENHA * <span>no mínimo 6 dígitos</span></label>
+                        <div class="password-wrapper">
+                            <input type="password" id="password" placeholder="Senha">
+                            <button type="button" class="toggle-password" title="Mostrar/Esconder senha">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Lembre de mim</label>
+                        </div>
+                        <a href="#" class="forgot-password">Esqueceu a senha?</a>
+                    </div>
+                    <button type="submit" class="btn-login">Entrar</button>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="js/login.js"></script>
+</body>
+</html>

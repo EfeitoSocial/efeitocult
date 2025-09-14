@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dúvidas - Efeito Social</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Área do Investidor Social</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html">Início</a></li>
+                    <li><a href="projeto.html">Projeto</a></li>
+                    <li class="active"><a href="duvidas.html">Dúvidas</a></li>
+                    <li><a href="perfil.html">Perfil</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" id="logout-button">Sair</a>
+                <div class="sidebar-logos">
+                    <img src="imgs/efeitologo.png" alt="Efeito Logo" class="logo-efeito">
+                    <img src="imgs/cult.png" alt="Cult Imersiva Logo" class="logo-cult">
+                </div>
+            </div>
+        </aside>
+        <main class="main-content">
+            <div class="faq-container">
+                <h2>Principais dúvidas</h2>
+                <section class="faq-videos">
+                    <div class="video-placeholder"><span>Título do vídeo</span></div>
+                    <div class="video-placeholder"><span>Título do vídeo</span></div>
+                    <div class="video-placeholder"><span>Título do vídeo</span></div>
+                </section>
+
+                <section class="faq-accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">O que são leis de incentivo fiscal</button>
+                        <div class="accordion-content">
+                            <p>Conteúdo da resposta aqui.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">Quem pode destinar imposto de renda para projetos sócio-culturais?</button>
+                        <div class="accordion-content">
+                            <p>Conteúdo da resposta aqui.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">Qual percentual do meu imposto de renda posso investir?</button>
+                        <div class="accordion-content">
+                            <p>Pela legislação atual, o contribuinte pessoa física poderá destinar até <strong>7% do imposto de renda devido</strong> para projetos aprovados para receberem recursos pelas leis de incentivo fiscal, sendo 1% exclusivo para a Lei do Esporte.</p>
+                        </div>
+                    </div>
+                     <!-- Add more accordion items as needed -->
+                </section>
+
+                <section class="contact-form-section">
+                    <h2>Entre em contato</h2>
+                    <p>Se você tiver alguma dúvida sobre envio de comprovantes, recibos, relatórios ou qualquer outra coisa relacionada ao Investimento Social, estamos aqui para ajudar!</p>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="assunto">ASSUNTO *</label>
+                            <select id="assunto" required>
+                                <option value="">Selecione uma opção</option>
+                                <option value="duvida_comprovante">Dúvida sobre comprovante</option>
+                                <option value="duvida_recibo">Dúvida sobre recibo</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">MENSAGEM *</label>
+                            <textarea id="mensagem" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Enviar mensagem</button>
+                    </form>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="js/duvidas.js"></script>
+</body>
+</html>
