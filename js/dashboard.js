@@ -26,6 +26,11 @@ const formatDate = (isoString) => {
 // --- RENDER FUNCTION ---
 const renderInvestments = (investments) => {
     receiptsList.innerHTML = ''; // Clear the list before rendering
+
+    // Calculate the total investment potential
+    const totalPotential = investments.reduce((sum, inv) => sum + inv.amount, 0);
+    potentialValueSpan.textContent = formatCurrency(totalPotential);
+
     if (investments.length === 0) {
         receiptsSection.style.display = 'none'; // Hide if no investments
         return;
@@ -109,7 +114,6 @@ calculatorForm.addEventListener('submit', async (e) => {
     }
 
     const investmentPotential = taxDue * 0.06;
-    potentialValueSpan.textContent = formatCurrency(investmentPotential);
     investmentPotentialResult.textContent = formatCurrency(investmentPotential);
 
     const user = auth.currentUser;
