@@ -18,40 +18,52 @@
     box-sizing: border-box;
 }
 
-body {
+body.register-page-body {
     font-family: 'Poppins', sans-serif;
     color: var(--text-dark);
-    background-color: var(--background-gray);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-.login-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.login-box {
     background-color: var(--background-light);
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    display: flex;
+    min-height: 100vh;
+}
+
+.register-container {
+    display: flex;
     width: 100%;
-    max-width: 450px;
+    min-height: 100vh;
+}
+
+.sidebar {
+    flex: 1;
+    background: url('../imgs/lateral.png') no-repeat center center;
+    background-size: contain;
+    background-color: var(--primary-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.register-form-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-color: var(--background-light);
+}
+
+.register-form-container {
+    width: 100%;
+    max-width: 400px;
     text-align: center;
 }
 
-.logo {
+.logo-form {
     max-width: 150px;
     margin-bottom: 20px;
 }
 
-.login-box h2 {
+.register-form-container h2 {
     font-size: 1.8rem;
     color: var(--dark-blue);
     margin-bottom: 30px;
@@ -109,14 +121,27 @@ body {
     background-color: var(--primary-blue);
 }
 
-.register-link {
+.login-link {
     margin-top: 25px;
     font-size: 0.9rem;
     color: #555;
 }
 
-.register-link a {
+.login-link a {
     color: var(--primary-blue);
     text-decoration: none;
     font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .register-container {
+        flex-direction: column;
+    }
+    .sidebar {
+        min-height: 200px;
+        flex: auto;
+    }
+    .register-form-section {
+        padding: 30px 20px;
+    }
 }

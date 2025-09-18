@@ -23,22 +23,20 @@ body.login-page-body {
     color: var(--text-dark);
     background-color: var(--background-light);
     display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
 }
 
 .login-container {
     display: flex;
     width: 100%;
-    max-width: 1200px;
     min-height: 100vh;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .sidebar {
     flex: 1;
-    background: linear-gradient(45deg, var(--dark-blue), var(--primary-blue));
+    background: url('../imgs/lateral.png') no-repeat center center;
+    background-size: contain;
+    background-color: var(--primary-blue);
     display: flex;
     justify-content: center;
     align-items: center;
