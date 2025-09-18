@@ -44,6 +44,7 @@ const loadUserData = async (uid) => {
             nomeInput.value = data.firstName || '';
             sobrenomeInput.value = data.lastName || '';
             cpfInput.value = data.cpf || '';
+            cpfInput.disabled = true;
             emailInput.value = data.email || '';
             celularInput.value = data.phone || '';
             updatesCheckbox.checked = data.acceptsUpdates || false;
@@ -104,7 +105,6 @@ profileForm.addEventListener('submit', (e) => {
         // Personal Data
         firstName: nomeInput.value,
         lastName: sobrenomeInput.value,
-        cpf: cpfInput.value,
         email: emailInput.value,
         phone: celularInput.value,
         acceptsUpdates: updatesCheckbox.checked,

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captação - Efeito Social</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Área do Investidor Social</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html">Início</a></li>
+                    <li><a href="projeto.html">Projeto</a></li>
+                    <li><a href="duvidas.html">Dúvidas</a></li>
+                    <li><a href="perfil.html">Perfil</a></li>
+                    <li class="active"><a href="admin.html">Administração</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" id="logout-button">Sair</a>
+                <div class="sidebar-logos">
+                    <img src="imgs/efeitologo.png" alt="Efeito Logo" class="logo-efeito">
+                    <img src="imgs/cult.png" alt="Cult Imersiva Logo" class="logo-cult">
+                </div>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-content">
+                    <a href="admin.html" class="back-link">&larr; Voltar</a>
+                    <h1>Projeto Museu InterativaMENTE</h1>
+                </div>
+                <button id="edit-project-button" class="btn-secondary">Editar Projeto</button>
+            </header>
+
+            <section id="project-banner-section" class="project-banner-section" style="display: none;">
+                <img id="project-banner-image" src="" alt="Banner do Projeto">
+            </section>
+
+            <section class="project-details-section">
+                <div id="project-description-container">
+                    <h2>Sobre o Projeto</h2>
+                    <p id="project-description-text"></p>
+                </div>
+                <div class="summary-cards">
+                    <div class="card">
+                        <label>Meta de Arrecadação</label>
+                        <span id="goal-amount-card">R$ 0,00</span>
+                    </div>
+                    <div class="card validated">
+                        <label>Valor Validado</label>
+                        <span id="validated-amount-card">R$ 0,00</span>
+                    </div>
+                    <div class="card pending">
+                        <label>Aguardando Validação</label>
+                        <span id="pending-amount-card">R$ 0,00</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="donations-section">
+                <div class="donations-header">
+                    <h2>Doações Recebidas</h2>
+                    <button class="filter-button">Filtrar</button>
+                </div>
+                <table class="donations-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Data</th>
+                            <th>Valor</th>
+                            <th>Comprovante</th>
+                            <th>Recibo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Linhas da tabela serão adicionadas dinamicamente -->
+                        <tr>
+                            <td>Nome Completo do Doador Sobrenome do Doador</td>
+                            <td>01 ABR 23</td>
+                            <td>R$ 000.000.000,00</td>
+                            <td><span class="status-icon validated">&#10003;</span></td>
+                            <td><span class="status-icon pending">!</span></td>
+                        </tr>
+                         <tr>
+                            <td>Nome Completo do Doador Sobrenome do Doador</td>
+                            <td>01 ABR 23</td>
+                            <td>R$ 000.000.000,00</td>
+                            <td><span class="status-icon pending">!</span></td>
+                            <td><span class="status-icon pending">!</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    <script type="module" src="js/captacao.js"></script>
+</body>
+</html>

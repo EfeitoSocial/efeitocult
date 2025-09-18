@@ -948,3 +948,50 @@ body {
 .btn-confirm-investment:hover {
     background-color: #F8F9FA;
 }
+
+/* Estilos da Sanfona de Projetos */
+.projects-accordion .accordion-item {
+    border-bottom: 1px solid #E9ECEF;
+}
+
+.projects-accordion .accordion-header {
+    width: 100%;
+    text-align: left;
+    padding: 24px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.projects-accordion .accordion-header:hover {
+    background-color: #F8F9FA;
+}
+
+.projects-accordion .accordion-header::after {
+    content: '▾';
+    font-size: 1.8rem;
+    transition: transform 0.3s;
+}
+
+.projects-accordion .accordion-item.active .accordion-header::after {
+    transform: rotate(180deg);
+}
+
+.projects-accordion .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    background-color: #FFFFFF;
+    padding: 0 24px;
+}
+
+.projects-accordion .accordion-item.active .accordion-content {
+    padding-top: 24px;
+    padding-bottom: 24px;
+}

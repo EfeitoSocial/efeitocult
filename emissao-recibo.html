@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emissão de Recibo - Efeito Social</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Área do Investidor Social</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html">Início</a></li>
+                    <li><a href="projeto.html">Projeto</a></li>
+                    <li><a href="duvidas.html">Dúvidas</a></li>
+                    <li><a href="perfil.html">Perfil</a></li>
+                    <li class="active"><a href="admin.html">Administração</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" id="logout-button">Sair</a>
+                <div class="sidebar-logos">
+                    <img src="imgs/efeitologo.png" alt="Efeito Logo" class="logo-efeito">
+                    <img src="imgs/cult.png" alt="Cult Imersiva Logo" class="logo-cult">
+                </div>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="main-header">
+                <a href="captacao.html" class="back-link">&larr; Voltar</a>
+                <h1>Emissão de Recibo</h1>
+            </header>
+
+            <section class="receipt-emission-section">
+                <div class="receipt-form-container">
+                    <h2>Dados do Investidor Social</h2>
+                    <form id="receipt-form">
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="donor-name">NOME COMPLETO</label>
+                                <input type="text" id="donor-name" value="Nome completo" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="donor-cpf">CPF</label>
+                                <input type="text" id="donor-cpf" value="00000000000" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="donor-address">ENDEREÇO</label>
+                                <input type="text" id="donor-address" value="Endereço" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="donor-number">NÚMERO</label>
+                                <input type="text" id="donor-number" value="0.000" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="donor-city">CIDADE</label>
+                                <input type="text" id="donor-city" value="Cidade" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="donor-state">ESTADO</label>
+                                <input type="text" id="donor-state" value="Estado" readonly>
+                            </div>
+                             <div class="form-group">
+                                <label for="donor-cep">CEP</label>
+                                <input type="text" id="donor-cep" value="00000000" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="donor-phone">TELEFONE</label>
+                                <input type="text" id="donor-phone" value="(00) 0000-0000" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="donation-value">VALOR</label>
+                                <input type="text" id="donation-value" value="R$ 000.000,00" readonly>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="proof-container">
+                    <h2>Comprovante</h2>
+                    <div class="proof-image-placeholder">
+                        <!-- Imagem do comprovante aqui -->
+                        <img src="" alt="Comprovante de pagamento" style="display:none;">
+                        <div class="placeholder-icon">🕒</div>
+                    </div>
+                    <button class="download-proof-button">Baixar</button>
+                </div>
+            </section>
+            <footer class="emission-footer">
+                <p>Confirme os dados do comprovante antes de emitir o recibo para o doador.</p>
+                <div class="action-buttons">
+                    <button class="btn-reject">Recusar comprovante</button>
+                    <button class="btn-accept">Enviar recibo</button>
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script type="module" src="js/emissao-recibo.js"></script>
+
+    <!-- Modal de Recusar Recibo -->
+    <div id="reject-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Recusar recibo?</h2>
+            <p>Enviaremos uma notificação para que o recibo seja reenviada.</p>
+            <form id="reject-form">
+                <label for="rejection-reason">INFORME O MOTIVO *</label>
+                <textarea id="rejection-reason" placeholder="Informe brevemente o motivo da recusa para que o doador possa reenviá-lo." required></textarea>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel">Cancelar</button>
+                    <button type="submit" class="btn-confirm-reject">Recusar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Enviar Recibo -->
+    <div id="send-receipt-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Enviar recibo</h2>
+            <form id="send-receipt-form">
+                <div class="form-group">
+                    <label for="investor-name">INVESTIDOR SOCIAL</label>
+                    <input type="text" id="investor-name" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="receipt-value">VALOR</label>
+                    <input type="text" id="receipt-value" readonly>
+                </div>
+                <div class="file-upload-area">
+                    <p>Arraste e Solte ou</p>
+                    <button type="button" class="btn-select-file">Selecione o Arquivo</button>
+                    <input type="file" id="receipt-file-input" hidden accept="image/*,.pdf">
+                    <div class="file-preview" style="display: none;"></div>
+                </div>
+                <button type="submit" class="btn-submit-receipt" disabled>Enviar Recibo</button>
+            </form>
+        </div>
+    </div>
+
+     <!-- Modal de Sucesso -->
+    <div id="success-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <img src="imgs/success-icon.png" alt="Sucesso" class="success-icon"> <!-- Adicionar um ícone de sucesso -->
+            <h2>Arquivo Enviado com Sucesso!</h2>
+            <p>O recibo da sua transação ficará armazenado na Área Inicial da Plataforma para consulta.</p>
+            <button class="btn-close-modal">Concluir</button>
+        </div>
+    </div>
+
+</body>
+</html>

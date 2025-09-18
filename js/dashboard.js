@@ -11,6 +11,7 @@ const potentialValueSpan = document.getElementById('potential-value');
 const investmentPotentialResult = document.getElementById('investment-potential-result');
 const receiptsSection = document.getElementById('receipts-section');
 const receiptsList = document.getElementById('receipts-list');
+const adminLink = document.getElementById('admin-link');
 
 // --- HELPERS ---
 const formatCurrency = (value) => value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -68,24 +69,36 @@ const renderInvestments = (investments) => {
 
 // --- DATA FETCHING ---
 const fetchUserData = async (uid) => {
+    // Step 1: Fetch user profile data
     try {
         const userDocRef = doc(db, "users", uid);
         const docSnap = await getDoc(userDocRef);
 
         if (docSnap.exists()) {
-            userNameSpan.textContent = docSnap.data().firstName;
+            const userData = docSnap.data();
+            // Use firstName from Firestore as the single source of truth for the name
+            userNameSpan.textContent = userData.firstName || "Usuário";
+
+            // Check if user is an admin via Firestore field and show the admin link
+            if (userData.isAdmin === true) {
+                adminLink.style.display = 'block';
+            }
         } else {
             userNameSpan.textContent = "Usuário";
         }
+    } catch (error) {
+        console.error("Error fetching user profile data:", error);
+        userNameSpan.textContent = "Usuário (erro)";
+    }
 
+    // Step 2: Fetch user investments data
+    try {
         const investmentsColRef = collection(db, "users", uid, "investments");
         const investmentsSnapshot = await getDocs(investmentsColRef);
         const investments = investmentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         renderInvestments(investments);
-
     } catch (error) {
-        console.error("Error fetching user data:", error);
-        userNameSpan.textContent = "Usuário";
+        console.error("Error fetching user investments:", error);
     }
 };
 

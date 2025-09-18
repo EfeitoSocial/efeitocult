@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração - Efeito Social</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Área do Investidor Social</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html">Início</a></li>
+                    <li><a href="projeto.html">Projeto</a></li>
+                    <li><a href="duvidas.html">Dúvidas</a></li>
+                    <li><a href="perfil.html">Perfil</a></li>
+                    <li class="active"><a href="admin.html">Administração</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" id="logout-button">Sair</a>
+                <div class="sidebar-logos">
+                    <img src="imgs/efeitologo.png" alt="Efeito Logo" class="logo-efeito">
+                    <img src="imgs/cult.png" alt="Cult Imersiva Logo" class="logo-cult">
+                </div>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="main-header">
+                <div>
+                    <h1>Projetos Cadastrados</h1>
+                    <p>Visualize os projetos da sua organização e selecione qual deseja administrar as doações.</p>
+                </div>
+                <a href="cadastro-projeto.html" class="btn-new-project">+ Cadastrar Projeto</a>
+            </header>
+
+            <section class="projects-section">
+                <!-- Os projetos serão listados aqui dinamicamente -->
+                <div class="project-card">
+                    <h3>Tênis em Cadeira de Rodas</h3>
+                    <span class="status active">Ativo</span>
+                </div>
+                <div class="project-card">
+                    <h3>Cidadania e Inclusão Social de Meninas Através do Esporte</h3>
+                    <span class="status inactive">Inativo</span>
+                </div>
+                <div class="project-card">
+                    <h3>Natação Paradesporto</h3>
+                    <span class="status finished">Finalizado</span>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script type="module" src="js/admin.js"></script>
+</body>
+</html>

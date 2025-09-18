@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Projeto - Efeito Social</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <!-- Sidebar idêntica às outras páginas de admin -->
+            <div class="sidebar-header">
+                <h3>Área do Investidor Social</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html">Início</a></li>
+                    <li><a href="projeto.html">Projeto</a></li>
+                    <li><a href="duvidas.html">Dúvidas</a></li>
+                    <li><a href="perfil.html">Perfil</a></li>
+                    <li class="active"><a href="admin.html">Administração</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" id="logout-button">Sair</a>
+                <div class="sidebar-logos">
+                    <img src="imgs/efeitologo.png" alt="Efeito Logo" class="logo-efeito">
+                    <img src="imgs/cult.png" alt="Cult Imersiva Logo" class="logo-cult">
+                </div>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="main-header">
+                <a href="admin.html" class="back-link">&larr; Voltar</a>
+                <h1>Cadastrar Novo Projeto</h1>
+            </header>
+
+            <section class="project-form-section">
+                <form id="project-form">
+                    <div class="form-group">
+                        <label for="project-name">Nome do Projeto</label>
+                        <input type="text" id="project-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="project-status">Status</label>
+                        <select id="project-status" required>
+                            <option value="Ativo">Ativo</option>
+                            <option value="Inativo">Inativo</option>
+                            <option value="Finalizado">Finalizado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="goal-amount">Meta de Arrecadação (R$)</label>
+                        <input type="number" id="goal-amount" step="0.01" placeholder="Ex: 50000.00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="project-banner">URL do Banner do Projeto</label>
+                        <input type="url" id="project-banner" placeholder="https://exemplo.com/imagem.png" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="project-description">Descrição do Projeto</label>
+                        <textarea id="project-description" rows="6" required></textarea>
+                    </div>
+                    <!-- Adicionar mais campos conforme necessário -->
+                    <button type="submit" class="btn-submit-project">Salvar Projeto</button>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script type="module" src="js/cadastro-projeto.js"></script>
+</body>
+</html>

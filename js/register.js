@@ -1,8 +1,45 @@
 import { db, auth } from './firebase.js';
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const registerForm = document.getElementById('registerForm');
+
+function validateCPF(cpf) {
+    cpf = cpf.replace(/[^\d]+/g,'');
+    if(cpf == '') return false;
+    // Elimina CPFs invalidos conhecidos
+    if (cpf.length != 11 ||
+        cpf == "00000000000" ||
+        cpf == "11111111111" ||
+        cpf == "22222222222" ||
+        cpf == "33333333333" ||
+        cpf == "44444444444" ||
+        cpf == "55555555555" ||
+        cpf == "66666666666" ||
+        cpf == "77777777777" ||
+        cpf == "88888888888" ||
+        cpf == "99999999999")
+            return false;
+    // Valida 1o digito
+    let add = 0;
+    for (let i=0; i < 9; i ++)
+        add += parseInt(cpf.charAt(i)) * (10 - i);
+    let rev = 11 - (add % 11);
+    if (rev == 10 || rev == 11)
+        rev = 0;
+    if (rev != parseInt(cpf.charAt(9)))
+        return false;
+    // Valida 2o digito
+    add = 0;
+    for (let i = 0; i < 10; i ++)
+        add += parseInt(cpf.charAt(i)) * (11 - i);
+    rev = 11 - (add % 11);
+    if (rev == 10 || rev == 11)
+        rev = 0;
+    if (rev != parseInt(cpf.charAt(10)))
+        return false;
+    return true;
+}
 
 registerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -11,9 +48,20 @@ registerForm.addEventListener('submit', async (e) => {
     const lastName = document.getElementById('lastName').value;
     const email = document.getElementById('email').value;
     const cpf = document.getElementById('cpf').value;
+    const phone = document.getElementById('phone').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
     const terms = document.getElementById('terms').checked;
+
+    if (!validateCPF(cpf)) {
+        alert('CPF inválido.');
+        return;
+    }
+
+    if (phone.trim() === '') {
+        alert('Por favor, preencha o seu número de celular.');
+        return;
+    }
 
     if (password !== confirmPassword) {
         alert('As senhas não coincidem.');
@@ -30,13 +78,19 @@ registerForm.addEventListener('submit', async (e) => {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Step 2: Save additional user info in Firestore
+        // Step 2: Update the user's profile with their first name
+        await updateProfile(user, {
+            displayName: firstName
+        });
+
+        // Step 3: Save additional user info in Firestore
         // We use the user's UID from Authentication as the document ID in Firestore
         await setDoc(doc(db, "users", user.uid), {
             firstName: firstName,
             lastName: lastName,
             email: email,
             cpf: cpf,
+            phone: phone,
             createdAt: new Date()
         });
 
