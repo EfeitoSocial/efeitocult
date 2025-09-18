@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projetos - Efeito Social</title>
+    <!-- Voltando a usar o dashboard.css -->
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
@@ -34,29 +35,10 @@
                 <p>Conheça os projetos que você pode apoiar.</p>
             </header>
 
+            <!-- A sanfona de projetos será preenchida aqui -->
             <section class="projects-accordion" id="projects-accordion">
-                <!-- A sanfona de projetos será inserida aqui dinamicamente -->
             </section>
         </main>
-    </div>
-
-    <!-- O Modal de Pagamento permanece o mesmo -->
-    <div id="payment-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2>Pagamento por Pix</h2>
-            <p>Copie o código ou escaneie o QR Code para pagar via Pix em qualquer aplicativo habilitado.</p>
-            <img src="https://placehold.co/200x200/0B1A4A/FFFFFF?text=QRCode" alt="QR Code para pagamento Pix" class="qr-code-img">
-            <div class="project-info-modal">
-                <span id="modal-project-name">Nome do Projeto</span>
-                <strong id="modal-investment-value">R$ 0,00</strong>
-            </div>
-            <div class="pix-code-box">
-                <span id="pix-code">00020101021226770154851890014...</span>
-            </div>
-            <button class="btn-copy-code">Copiar QR Code</button>
-            <button class="btn-confirm-investment">Já efetuei meu investimento</button>
-        </div>
     </div>
 
     <script type="module" src="js/projeto.js"></script>

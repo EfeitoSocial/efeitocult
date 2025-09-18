@@ -1,15 +1,27 @@
 import { auth, db } from './firebase.js';
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { doc, getDoc, collection, getDocs, addDoc, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { doc, getDoc, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+// --- DOM ELEMENTS ---
 const logoutButton = document.getElementById('logout-button');
 const projectsAccordion = document.getElementById('projects-accordion');
-const potentialValueSpan = document.querySelector('.potential-value span'); // Mover para dentro do escopo do projeto
 
-// --- AUTHENTICATION ---
-onAuthStateChanged(auth, (user) => {
+// --- HELPERS ---
+const formatCurrency = (value) => {
+    if (typeof value !== 'number') return 'R$ 0,00';
+    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+};
+const formatDate = (timestamp) => {
+    if (!timestamp || !timestamp.toDate) return 'Data inválida';
+    return timestamp.toDate().toLocaleDateString('pt-BR');
+};
+
+// --- AUTHENTICATION & USER DATA ---
+onAuthStateChanged(auth, async (user) => {
     if (user) {
-        loadActiveProjects(user.uid);
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        const isAdmin = userDoc.exists() && userDoc.data().isAdmin === true;
+        loadActiveProjects(isAdmin);
     } else {
         window.location.href = 'login.html';
     }
@@ -21,7 +33,7 @@ logoutButton.addEventListener('click', (e) => {
 });
 
 // --- DATA FETCHING & RENDERING ---
-async function loadActiveProjects(userId) {
+async function loadActiveProjects(isAdmin) {
     try {
         const q = query(collection(db, "projects"), where("status", "==", "Ativo"));
         const querySnapshot = await getDocs(q);
@@ -31,11 +43,12 @@ async function loadActiveProjects(userId) {
             return;
         }
 
-        querySnapshot.forEach(doc => {
-            const project = doc.data();
-            project.id = doc.id;
-            createProjectAccordionItem(project, userId);
-        });
+        projectsAccordion.innerHTML = ''; // Limpa antes de adicionar
+        for (const projectDoc of querySnapshot.docs) {
+            const project = projectDoc.data();
+            project.id = projectDoc.id;
+            await createProjectAccordionItem(project, isAdmin);
+        }
 
         initializeAccordion();
 
@@ -44,40 +57,60 @@ async function loadActiveProjects(userId) {
     }
 }
 
-function createProjectAccordionItem(project, userId) {
+async function createProjectAccordionItem(project, isAdmin) {
     const item = document.createElement('div');
     item.classList.add('accordion-item');
 
-    // Conteúdo interno do projeto, similar ao antigo projeto.html
+    const editButtonHTML = isAdmin ? `<a href="cadastro-projeto.html?id=${project.id}" class="btn btn-outline">Editar Projeto</a>` : '';
+
     const contentHTML = `
-        <div class="project-layout">
-            <div class="project-details">
-                <h2>${project.name}</h2>
-                <p class="location">📍 Localização a ser adicionada</p>
-                <p>${project.description || 'Descrição do projeto a ser adicionada.'}</p>
-            </div>
-            <div class="investment-card">
-                <div class="investment-goal">
-                    <label>Meta de Arrecadação</label>
-                    <strong>${formatCurrency(project.goal || 0)}</strong>
-                </div>
-                <div class="investment-raised">
-                    <label>Arrecadado</label>
-                    <span>${formatCurrency(project.raised || 0)}</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress" style="width: ${((project.raised || 0) / (project.goal || 1)) * 100}%;"></div>
-                </div>
-                <form class="investment-form" data-project-id="${project.id}" data-project-name="${project.name}">
-                    <label for="investment-value-${project.id}">Valor do Investimento Social</label>
-                    <input type="text" id="investment-value-${project.id}" placeholder="R$ 0,00">
-                    <div class="potential-value">
-                        Potencial de Investimento <span id="potential-value-${project.id}">R$ 0,00</span>
-                    </div>
-                    <button type="submit" class="btn-invest">Fazer Investimento Social</button>
-                </form>
-            </div>
+        <div class="project-header">
+            <h1>${project.name}</h1>
+            ${editButtonHTML}
         </div>
+        <div class="project-banner-container">
+            <img src="${project.bannerUrl || 'https://placehold.co/1200x400/cccccc/999999?text=Banner'}" alt="Banner do Projeto">
+        </div>
+        <section class="project-section">
+            <h2>Sobre o Projeto</h2>
+            <p class="project-description">${project.description || 'Descrição não disponível.'}</p>
+            <div class="about-grid">
+                <div class="about-item">
+                    <label>Meta de Arrecadação</label>
+                    <strong>${formatCurrency(project.goalAmount)}</strong>
+                </div>
+                <div class="value-card validated">
+                    <label>Valor Validado</label>
+                    <strong id="validated-${project.id}">R$ 0,00</strong>
+                </div>
+                <div class="value-card pending">
+                    <label>Aguardando Validação</label>
+                    <strong id="pending-${project.id}">R$ 0,00</strong>
+                </div>
+            </div>
+        </section>
+        <section class="donations-section">
+            <div class="donations-header">
+                <h2>Doações Recebidas</h2>
+                <button class="btn-filter">Filtrar</button>
+            </div>
+            <div class="table-container">
+                <table class="donations-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Data</th>
+                            <th>Valor</th>
+                            <th>Comprovante</th>
+                            <th>Recibo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body-${project.id}">
+                        <tr><td colspan="5">Carregando doações...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
     `;
 
     item.innerHTML = `
@@ -88,9 +121,47 @@ function createProjectAccordionItem(project, userId) {
     `;
 
     projectsAccordion.appendChild(item);
+    // Após adicionar o item ao DOM, carregue os dados das doações
+    loadDonationDetailsForProject(project.id);
+}
 
-    // Carregar o potencial de investimento do usuário para este card
-    fetchUserData(userId, project.id);
+async function loadDonationDetailsForProject(projectId) {
+    const donationsQuery = query(collection(db, "donations"), where("projectId", "==", projectId));
+    const donationsSnapshot = await getDocs(donationsQuery);
+
+    let validatedAmount = 0;
+    let pendingAmount = 0;
+    const tableBody = document.getElementById(`table-body-${projectId}`);
+    tableBody.innerHTML = '';
+
+    if (donationsSnapshot.empty) {
+        tableBody.innerHTML = '<tr><td colspan="5">Nenhuma doação recebida para este projeto ainda.</td></tr>';
+    } else {
+        for (const donationDoc of donationsSnapshot.docs) {
+            const donation = donationDoc.data();
+            const userSnap = await getDoc(doc(db, "users", donation.userId));
+            const userName = userSnap.exists() ? userSnap.data().name : "Doador Anônimo";
+
+            if (donation.proofStatus === 'validated') {
+                validatedAmount += donation.value;
+            } else {
+                pendingAmount += donation.value;
+            }
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${userName}</td>
+                <td>${formatDate(donation.donationDate)}</td>
+                <td>${formatCurrency(donation.value)}</td>
+                <td><a href="${donation.proofUrl}" target="_blank">Ver</a></td>
+                <td>${donation.receiptStatus === 'issued' ? '<a href="...">Ver</a>' : 'Pendente'}</td>
+            `;
+            tableBody.appendChild(row);
+        }
+    }
+
+    document.getElementById(`validated-${projectId}`).textContent = formatCurrency(validatedAmount);
+    document.getElementById(`pending-${projectId}`).textContent = formatCurrency(pendingAmount);
 }
 
 function initializeAccordion() {
@@ -100,83 +171,20 @@ function initializeAccordion() {
             const item = header.parentElement;
             const content = header.nextElementSibling;
 
-            // Fecha outros itens abertos
-            document.querySelectorAll('.accordion-item').forEach(otherItem => {
-                if (otherItem !== item && otherItem.classList.contains('active')) {
-                    otherItem.classList.remove('active');
-                    otherItem.querySelector('.accordion-content').style.maxHeight = null;
-                }
-            });
-
-            // Abre ou fecha o item clicado
             item.classList.toggle('active');
             if (content.style.maxHeight) {
                 content.style.maxHeight = null;
             } else {
                 content.style.maxHeight = content.scrollHeight + "px";
             }
+
+            // Ajusta o maxHeight de outros itens abertos quando um novo é aberto/fechado
+            document.querySelectorAll('.accordion-item.active').forEach(activeItem => {
+                if (activeItem !== item) {
+                    const activeContent = activeItem.querySelector('.accordion-content');
+                    activeContent.style.maxHeight = activeContent.scrollHeight + "px";
+                }
+            });
         });
     });
 }
-
-async function fetchUserData(uid, projectId) {
-    try {
-        const userDocRef = doc(db, "users", uid);
-        const docSnap = await getDoc(userDocRef);
-        const potentialValueSpan = document.getElementById(`potential-value-${projectId}`);
-
-        if (docSnap.exists() && docSnap.data().investmentPotential) {
-            const potential = docSnap.data().investmentPotential;
-            potentialValueSpan.textContent = formatCurrency(potential);
-        } else {
-            potentialValueSpan.textContent = formatCurrency(0);
-        }
-    } catch (error) {
-        console.error("Error fetching user data:", error);
-    }
-}
-
-// --- HELPERS ---
-const formatCurrency = (value) => {
-    if (typeof value !== 'number') return 'R$ 0,00';
-    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-}
-
-// --- LÓGICA DE INVESTIMENTO (EVENT DELEGATION) ---
-projectsAccordion.addEventListener('submit', (e) => {
-    if (e.target.classList.contains('investment-form')) {
-        e.preventDefault();
-        const form = e.target;
-        const projectId = form.dataset.projectId;
-        const projectName = form.dataset.projectName;
-        const input = form.querySelector('input');
-        
-        const rawValue = input.value.replace(/\D/g, '');
-        const investmentAmount = parseFloat(rawValue) / 100;
-
-        if (isNaN(investmentAmount) || investmentAmount <= 0) {
-            alert('Por favor, insira um valor de investimento válido.');
-            return;
-        }
-        
-        openPaymentModal(projectName, investmentAmount);
-    }
-});
-
-// --- MODAL LOGIC ---
-const paymentModal = document.getElementById('payment-modal');
-const closeModalButton = document.querySelector('.close-button');
-const modalProjectName = document.getElementById('modal-project-name');
-const modalInvestmentValue = document.getElementById('modal-investment-value');
-
-function openPaymentModal(projectName, amount) {
-    modalProjectName.textContent = projectName;
-    modalInvestmentValue.textContent = formatCurrency(amount);
-    paymentModal.style.display = 'flex';
-}
-
-closeModalButton.addEventListener('click', () => {
-    paymentModal.style.display = 'none';
-});
-
-// ... (resto da lógica do modal, como copiar código PIX e confirmar investimento)

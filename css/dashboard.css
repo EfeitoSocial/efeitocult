@@ -995,3 +995,140 @@ body {
     padding-top: 24px;
     padding-bottom: 24px;
 }
+
+/* ===================================================== */
+/* === ESTILOS DETALHADOS DO PROJETO DENTRO DO ACCORDION === */
+/* ===================================================== */
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.project-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-outline {
+    border-color: #CED4DA;
+    background-color: #FFFFFF;
+    color: #495057;
+}
+
+.project-banner-container {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 32px;
+}
+
+.project-banner-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.project-section, .donations-section {
+    background-color: #F8F9FA; /* Um pouco diferente para aninhar bem */
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+}
+
+.project-section h2, .donations-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.project-description {
+    color: #6C757D;
+    margin-bottom: 24px;
+    max-width: 80ch;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    align-items: end;
+}
+
+.about-item label, .value-card label {
+    display: block;
+    color: #6C757D;
+    margin-bottom: 8px;
+}
+
+.about-item strong {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.value-card {
+    padding: 24px;
+    border-radius: 12px;
+}
+
+.value-card strong {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.value-card.validated {
+    background-color: #E6F9F1;
+    color: #1F9E6F;
+}
+
+.value-card.pending {
+    background-color: #FFF4E6;
+    color: #F79009;
+}
+
+.donations-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.btn-filter {
+    background-color: #FFFFFF;
+    border: 1px solid #CED4DA;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.donations-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.donations-table th, .donations-table td {
+    padding: 16px;
+    border-bottom: 1px solid #E9ECEF;
+}
+
+.donations-table th {
+    color: #6C757D;
+    font-weight: 500;
+}

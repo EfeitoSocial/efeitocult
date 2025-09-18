@@ -481,3 +481,18 @@
     background-color: #0B1A4A;
     color: #FFFFFF;
 }
+
+/* Estilos para o banner na página de captação */
+.project-banner-section {
+    width: 100%;
+    height: 250px; /* Altura do banner */
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.project-banner-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
