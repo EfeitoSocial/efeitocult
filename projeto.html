@@ -66,14 +66,14 @@
                         <div class="progress" style="width: 25%;"></div>
                         <span>25%</span>
                     </div>
-                    <div class="investment-form">
+                    <form class="investment-form">
                         <label for="investment-value">Valor do Investimento Social</label>
                         <input type="text" id="investment-value" placeholder="R$ 0,00">
                         <div class="potential-value">
                             Potencial de Investimento <span>R$ 000.000,00</span>
                         </div>
-                        <button class="btn-invest">Fazer Investimento Social</button>
-                    </div>
+                        <button type="button" class="btn-invest">Fazer Investimento Social</button>
+                    </form>
                     <a href="#" class="how-it-works">ⓘ Como é calculado o Potencial de Doação?</a>
                     <div class="org-info">
                         <span>Org</span>
@@ -87,6 +87,26 @@
             </div>
         </main>
     </div>
+
+    <!-- Modal de Pagamento -->
+    <div id="payment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Pagamento por Pix</h2>
+            <p>Copie o código ou escaneie o QR Code para pagar via Pix em qualquer aplicativo habilitado.</p>
+            <img src="https://placehold.co/200x200/0B1A4A/FFFFFF?text=QRCode" alt="QR Code para pagamento Pix" class="qr-code-img">
+            <div class="project-info-modal">
+                <span id="modal-project-name">Cult! Imersões Projeto Museu</span>
+                <strong id="modal-investment-value">R$ 0,00</strong>
+            </div>
+            <div class="pix-code-box">
+                <span id="pix-code">00020101021226770154851890014...</span>
+            </div>
+            <button class="btn-copy-code">Copiar QR Code</button>
+            <button class="btn-confirm-investment">Já efetuei meu investimento</button>
+        </div>
+    </div>
+
     <script type="module" src="js/projeto.js"></script>
 </body>
 </html>

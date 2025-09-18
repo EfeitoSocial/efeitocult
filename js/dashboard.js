@@ -49,9 +49,11 @@ const renderInvestments = (investments) => {
             ? `<a href="${inv.receiptUrl}" target="_blank" class="btn-view">Ver comprovante</a>`
             : `<button class="btn-upload">Enviar comprovante</button><input type="file" class="file-input" style="display: none;">`;
 
+        const projectName = inv.projectName || 'Investimento Social';
+
         item.innerHTML = `
             <div class="receipt-info">
-                <span class="project-name">Investimento Social</span>
+                <span class="project-name">${projectName}</span>
                 <span class="receipt-date">${formatDate(inv.date)}</span>
                 <span class="receipt-amount">${formatCurrency(inv.amount)}</span>
             </div>

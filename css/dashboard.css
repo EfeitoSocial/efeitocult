@@ -830,3 +830,121 @@ body {
     display: flex;
     align-items: center;
 }
+
+/* Estilos do Modal de Pagamento */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+}
+
+.modal-content h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #0B1A4A;
+}
+
+.modal-content p {
+    color: #6C757D;
+    margin-bottom: 24px;
+}
+
+.qr-code-img {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 24px;
+    display: block;
+}
+
+.project-info-modal {
+    margin-bottom: 16px;
+}
+
+.project-info-modal span {
+    display: block;
+    color: #495057;
+}
+
+.project-info-modal strong {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #212529;
+    margin-top: 4px;
+}
+
+.pix-code-box {
+    background-color: #F8F9FA;
+    border: 1px dashed #CED4DA;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    word-break: break-all;
+    font-family: monospace;
+}
+
+.btn-copy-code, .btn-confirm-investment {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-copy-code {
+    background-color: #0B1A4A;
+    color: #FFFFFF;
+    border: none;
+    margin-bottom: 12px;
+}
+
+.btn-copy-code:hover {
+    background-color: #1C2D6E;
+}
+
+.btn-confirm-investment {
+    background-color: #FFFFFF;
+    color: #0B1A4A;
+    border: 1px solid #CED4DA;
+}
+
+.btn-confirm-investment:hover {
+    background-color: #F8F9FA;
+}
