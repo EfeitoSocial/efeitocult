@@ -245,117 +245,242 @@ section {
     border: 1px solid var(--light-blue);
     padding: 15px 25px;
     border-radius: 8px;
-    max-width: 300px;
+    max-width: 320px;
     background-color: rgba(255, 255, 255, 0.05);
+    text-align: left;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
 }
 
-/* Video Placeholder */
-.video-placeholder {
-    background-color: #E0E0E0;
-    text-align: center;
-    padding: 150px 0;
-    color: #666;
+.benefit-item .checkmark {
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+    border-radius: 4px;
+    padding: 2px 5px;
+    font-size: 0.8rem;
+    line-height: 1;
 }
 
 /* Impact Feature */
+.impact-feature {
+    background-color: var(--background-light);
+}
 .impact-feature .container {
     display: flex;
     align-items: center;
     gap: 60px;
 }
-.impact-content { flex: 1; }
-.impact-image { flex: 1; }
-.impact-image img { max-width: 100%; border-radius: 12px; }
+.impact-content {
+    flex: 1;
+}
+.impact-content h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+.impact-content p {
+    margin-bottom: 30px;
+}
+.impact-image {
+    flex: 1;
+    background-color: var(--light-blue);
+    border-radius: 20px;
+    padding: 20px;
+}
+.impact-image img {
+    width: 100%;
+    border-radius: 20px;
+    display: block;
+}
 
 /* Learning Ecosystem */
 .learning-ecosystem {
-    background-color: var(--primary-blue);
+    background-color: var(--dark-blue);
     color: var(--text-light);
     text-align: center;
 }
-.learning-ecosystem h2 { color: var(--text-light); }
-.learning-ecosystem p { max-width: 800px; margin: 0 auto 40px; }
+.learning-ecosystem h2 {
+    color: var(--text-light);
+    margin-bottom: 30px; /* Increased spacing */
+}
+.learning-ecosystem h2 strong {
+    font-weight: 800; /* Bolder */
+}
+.learning-ecosystem p {
+    max-width: 800px;
+    margin: 0 auto 20px;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
 .gallery {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1px; /* Cria o efeito de borda fina */
-    background-color: var(--primary-blue);
-    overflow: hidden;
+    gap: 1px;
+    margin-top: 40px;
 }
-.gallery img { width: 100%; height: 250px; object-fit: cover; display: block; }
-
-/* Social Commitment */
-.social-commitment .container {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-}
-.commitment-content { flex: 1; }
-.commitment-quote {
-    flex-basis: 50%;
-}
-.commitment-quote img {
+.gallery img {
     width: 100%;
+    height: 250px; /* Set a fixed height */
+    object-fit: cover; /* Ensure images cover the area without distortion */
     display: block;
-    border-radius: 16px;
 }
 
 /* Experiences */
 .experiences {
     background-color: var(--dark-blue);
-    text-align: center;
+    color: var(--text-light);
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
-.experiences h2 { color: var(--text-light); margin-bottom: 50px; }
+.experiences h2 {
+    color: var(--text-light);
+    margin-bottom: 50px;
+}
 .experience-cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
     margin-bottom: 50px;
 }
-.experience-cards .card {
+.experiences .card {
     background-color: var(--background-light);
-    border-radius: 12px;
+    color: var(--text-dark);
+    border-radius: 20px;
     overflow: hidden;
-    text-align: left;
 }
-.experience-cards .card img { width: 100%; height: 180px; object-fit: cover; }
-.experience-cards .card h3 { margin: 15px 20px 5px; }
-.experience-cards .card p { margin: 0 20px 20px; font-size: 0.9rem; }
+.card-image {
+    background-color: var(--primary-blue);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-image img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+}
+.card-content {
+    padding: 20px;
+}
+.card-content h3 {
+    color: var(--primary-blue);
+}
+.experiences .btn-secondary {
+    background-color: var(--secondary-orange);
+    display: table;
+    margin: 0 auto;
+}
 
-/* Why Donate */
-.why-donate { text-align: center; }
-.why-donate h2 { margin-bottom: 50px; }
-.donate-cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-}
-.donate-cards .card {
+/* How to Donate */
+.how-to-donate {
     background-color: var(--background-gray);
-    padding: 25px;
-    border-radius: 12px;
+}
+.how-to-donate h2 {
+    margin-bottom: 50px;
+}
+.donate-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: stretch; /* Make cards same height */
+}
+.option-card {
+    background-color: var(--background-light);
+    padding: 30px;
+    border-radius: 20px;
+    position: relative;
+}
+.option-card h3 {
+    margin-bottom: 15px;
+}
+.option-card p {
+    margin-bottom: 30px;
+}
+.option-card img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+.recommended-tag {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+.how-to-donate .btn-secondary {
+    background-color: var(--secondary-orange);
+}
+.final-text {
+    text-align: center;
+    max-width: 800px;
+    margin: 50px auto 0;
 }
 
-/* Investment Calculator */
-.investment-calculator { background-color: var(--background-gray); }
-.investment-calculator > .container > h2,
-.investment-calculator > .container > p { text-align: center; }
-.investment-calculator > .container > p { max-width: 800px; margin: 0 auto 40px; }
-.calculator-content { display: flex; gap: 50px; align-items: center; }
-.calculator-steps { flex: 1; }
-.calculator-image { flex: 1; }
-.calculator-image img { max-width: 100%; border: 1px solid var(--border-color); border-radius: 8px; }
-.calculator-steps .step { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px; }
-.step-number {
-    background-color: #2EC4B6;
-    color: white;
-    min-width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-weight: 700;
-    font-size: 1.2rem;
+/* Why and How Section */
+.why-and-how {
+    background-color: var(--background-light);
+}
+.why-donate {
+    text-align: center;
+    margin-bottom: 80px;
+}
+.why-donate h2 {
+    margin-bottom: 50px;
+}
+.donate-reasons-flow {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    position: relative; /* For arrows */
+}
+.reason-box {
+    background-color: var(--background-gray);
+    padding: 20px;
+    border-radius: 15px;
+    width: 22%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.how-to-calculate h2,
+.how-to-calculate > p {
+    text-align: center;
+}
+.how-to-calculate > p {
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+.calculator-content {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+}
+.calculator-steps-card {
+    flex: 1;
+    background-color: var(--background-light);
+    border: 1px solid var(--light-blue);
+    border-radius: 20px;
+    padding: 30px;
+}
+.calculator-steps-card .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+.calculator-steps-card .step:first-child {
+    margin-bottom: 30px;
+}
+.calculator-image {
+    flex: 1;
+}
+.calculator-image img {
+    max-width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
 }
 .important-note {
     background-color: #FFFBEB;
@@ -363,82 +488,80 @@ section {
     padding: 15px;
     border-radius: 8px;
     margin-top: 20px;
-}
-.calculator-placeholder, .calculator {
-    background-color: var(--background-light);
-    border: 1px solid var(--border-color);
-    padding: 40px;
-    margin-top: 40px;
-    border-radius: 12px;
-}
-
-.calculator-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 30px;
-    max-width: 450px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.calculator-form .form-group {
-    width: 100%;
-    text-align: left;
-}
-
-.calculator-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: var(--text-dark);
-}
-
-.calculator-form input {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-}
-
-.calculator-form .btn {
-    width: 100%;
-    padding: 15px;
-    font-size: 1.1rem;
-    background-color: var(--dark-blue);
-    color: var(--text-light);
-    border: none;
-}
-
-.calculator-result {
     text-align: center;
 }
 
-.calculator-result h3 {
-    font-size: 1.2rem;
-    font-weight: 500;
+/* Calculator Section Index */
+.calculator-section-index {
+    background-color: var(--background-gray);
+}
+.calculator-section-index .container {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+.calculator-box, .result-box {
+    background-color: var(--background-light);
+    padding: 40px;
+    border-radius: 20px;
+    flex: 1;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+}
+.calculator-box h2 {
+    margin-top: 0;
+}
+#calculator-form {
+    margin-top: 20px;
+}
+#calculator-form label {
+    display: block;
     margin-bottom: 10px;
-    color: var(--text-dark);
+    font-weight: 600;
 }
-
-#investment-potential-result {
+#calculator-form input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+#calculator-form button {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--dark-blue);
+    color: var(--text-light);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.result-box h3 {
     font-size: 2.5rem;
-    font-weight: 700;
     color: var(--dark-blue);
+    margin: 10px 0;
+}
+.result-box small {
+    opacity: 0.8;
 }
 
-/* Step by Step */
-.step-by-step .container { display: flex; align-items: center; gap: 60px; }
-.step-content { flex: 1; }
-.step-image { flex: 1; }
-.step-image img { max-width: 100%; }
-.step-content ol { list-style: none; counter-reset: step-counter; }
+/* Step by Step Section */
+.step-by-step .container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+.step-content {
+    flex: 1;
+}
+.step-content ol {
+    list-style: none;
+    padding-left: 0;
+    counter-reset: step-counter;
+}
 .step-content li {
     display: flex;
-    align-items: flex-start; /* Alinha o número e o texto pelo topo */
+    align-items: center; /* Align items vertically */
     gap: 20px;
     margin-bottom: 20px;
     font-size: 1.1rem;
@@ -451,47 +574,181 @@ section {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    display: grid;
-    place-items: center;
+    display: flex; /* Use flexbox for alignment */
+    align-items: center;
+    justify-content: center;
     font-weight: 700;
-    flex-shrink: 0; /* Impede que o número encolha */
+    flex-shrink: 0;
 }
-.step-content li div {
-    padding-top: 5px; /* Ajuste fino para alinhar o texto com o número */
+.important-note-red {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #FEF2F2;
+    border: 1px solid #FECACA;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
 }
-.step-by-step .important-note { background-color: #FEF2F2; border-color: #FECACA; }
+.step-image {
+    flex: 1;
+    position: relative; /* For background graphic */
+}
+.step-image img {
+    max-width: 100%;
+    position: relative;
+    z-index: 2;
+}
+.step-image::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: #2EC4B6; /* Teal color from image */
+    border-radius: 30px;
+    z-index: 1;
+}
 
-/* Tax Deduction */
-.tax-deduction { background-color: var(--background-gray); }
-.tax-deduction .container { display: flex; align-items: center; gap: 60px; }
-.deduction-tabs { flex: 1; background-color: var(--dark-blue); color: var(--text-light); padding: 30px; border-radius: 12px; }
-.deduction-explanation { flex: 1; }
-.tabs-buttons { display: flex; border-bottom: 1px solid rgba(255,255,255,0.2); margin-bottom: 20px; }
+/* Tax Deduction Section */
+.tax-deduction {
+    background-color: var(--light-blue);
+}
+.tax-deduction .container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+.deduction-tabs {
+    flex: 1;
+    background-color: var(--dark-blue);
+    color: var(--text-light);
+    padding: 30px;
+    border-radius: 20px;
+}
+.deduction-explanation {
+    flex: 1;
+}
+.tabs-buttons {
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 20px;
+}
 .tab-button {
     background: none;
     border: none;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
     padding: 10px 20px;
     cursor: pointer;
     font-size: 1rem;
-    border-radius: 8px 8px 0 0;
+    border-radius: 10px 10px 0 0;
 }
-.tab-button.active { background-color: var(--background-light); color: var(--dark-blue); font-weight: 600; }
-.tab-content .example { margin-top: 20px; }
-.tab-content .total { background-color: var(--background-light); color: var(--dark-blue); padding: 15px; border-radius: 8px; text-align: center; font-weight: 700; font-size: 1.2rem; margin-top: 15px; }
+.tab-button.active {
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+    font-weight: 600;
+}
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+.tab-content .example {
+    margin-top: 20px;
+}
+.tab-content .total {
+    background-color: var(--background-light);
+    color: var(--dark-blue);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-top: 15px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+.form-group label {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+.form-group input {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+/* Partnership */
+.partnership {
+    background-color: var(--dark-blue);
+    color: var(--text-light);
+}
+.partnership h2 {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 50px;
+}
+.partnership-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+.partnership-text {
+    flex: 1;
+}
+.partnership-quote-card {
+    flex: 1;
+    background-color: var(--secondary-orange);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+}
+.partnership-quote-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid var(--background-light);
+}
+.quote-text {
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+.quote-author {
+    font-size: 0.9rem;
+}
+
+/* Investment Form Intro */
+.investment-form-intro {
+    text-align: center;
+    background-color: var(--background-gray);
+}
+.investment-form-intro h2 {
+    margin-bottom: 20px;
+}
+.investment-form-intro p {
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+.contact-info-box {
+    display: inline-block;
+    border: 1px solid var(--primary-blue);
+    padding: 15px 30px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
 
 /* Investment Form */
-.investment-form { background-color: var(--background-gray); }
-.investment-form h2, .investment-form .form-subtitle { text-align: center; }
-.investment-form .form-subtitle { max-width: 600px; margin: 0 auto 20px; }
-.contact-info {
-    border: 1px solid #90EE90;
-    background-color: #F0FFF0;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 40px;
+.investment-form {
+    padding-bottom: 80px;
 }
 .form-container {
     display: flex;
@@ -501,29 +758,66 @@ section {
     border-radius: 12px;
     border: 1px solid var(--border-color);
 }
-.bank-details { flex-basis: 35%; text-align: center; }
-.bank-details img { max-width: 120px; margin-bottom: 20px; }
-.investment-form form { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.form-group { display: flex; flex-direction: column; }
-.form-group label { margin-bottom: 5px; font-size: 0.9em; font-weight: 500; }
-.form-group input { padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; }
-.form-group.checkbox { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 10px; }
+.bank-details {
+    flex-basis: 35%;
+    text-align: center;
+}
+.bank-details img {
+    max-width: 120px;
+    margin-bottom: 20px;
+}
+.investment-form form {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+.form-group label {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+.form-group input {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+.form-group.checkbox {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
 
 /* Results Section */
-.results { background-color: var(--background-gray); }
+.results {
+    background-color: var(--background-gray);
+}
 .results .container {
-    background-color: #E0F7FA;
+    background-color: #E0F7FA; /* Light blue from image */
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 40px;
     padding: 50px;
-    border-radius: 16px;
+    border-radius: 20px;
 }
-.results .container img {
-    max-width: 150px; /* Define o tamanho máximo da imagem */
+.results-image {
+    flex-basis: 40%;
 }
-.results-content h2 { font-size: 2rem; }
+.results-image img {
+    max-width: 100%;
+}
+.results-content {
+    flex-basis: 60%;
+}
+.results-content h2 {
+    font-size: 2rem;
+}
 
 /* Footer */
 .main-footer {
