@@ -12,6 +12,9 @@ const investmentPotentialResult = document.getElementById('investment-potential-
 const receiptsSection = document.getElementById('receipts-section');
 const receiptsList = document.getElementById('receipts-list');
 const adminLink = document.getElementById('admin-link');
+const savePotentialButton = document.getElementById('save-potential-button');
+
+let currentInvestmentPotential = 0; // To hold the value between simulation and saving
 
 // --- HELPERS ---
 const formatCurrency = (value) => value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -118,7 +121,7 @@ logoutButton.addEventListener('click', (e) => {
 });
 
 // --- EVENT LISTENERS ---
-calculatorForm.addEventListener('submit', async (e) => {
+calculatorForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const rawValue = taxDueInput.value.replace(/\D/g, '');
     const taxDue = parseFloat(rawValue) / 100;
@@ -130,20 +133,33 @@ calculatorForm.addEventListener('submit', async (e) => {
 
     const investmentPotential = taxDue * 0.06;
     investmentPotentialResult.textContent = formatCurrency(investmentPotential);
+    currentInvestmentPotential = investmentPotential; // Store the value for the save button
+});
+
+savePotentialButton.addEventListener('click', async () => {
+    if (currentInvestmentPotential <= 0) {
+        alert('Por favor, simule um potencial de investimento válido primeiro.');
+        return;
+    }
 
     const user = auth.currentUser;
     if (user) {
         try {
             const investmentsColRef = collection(db, "users", user.uid, "investments");
             await addDoc(investmentsColRef, {
-                amount: investmentPotential,
+                amount: currentInvestmentPotential,
                 date: new Date().toISOString(),
                 status: 'pending_receipt',
-                receiptUrl: null
+                receiptUrl: null,
+                projectName: 'Potencial Salvo'
             });
+            alert('Potencial de investimento salvo com sucesso!');
             fetchUserData(user.uid); // Refresh the list
+            currentInvestmentPotential = 0; // Reset after saving
+            investmentPotentialResult.textContent = formatCurrency(0); // Also reset the display
         } catch (error) {
             console.error("Error saving investment: ", error);
+            alert('Ocorreu um erro ao salvar seu potencial.');
         }
     }
 });

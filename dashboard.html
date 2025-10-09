@@ -14,11 +14,12 @@
             </div>
             <nav class="sidebar-nav">
                 <ul>
-                    <li class="active"><a href="dashboard.html">Início</a></li>
+                    <li class="active"><a href="dashboard.html">Resumo</a></li>
                     <li><a href="projeto.html">Projeto</a></li>
+                    <li><a href="investimentos.html">Meus Investimentos</a></li>
+                    <li><a href="admin.html" id="admin-link" style="display: none;">Admin</a></li>
                     <li><a href="duvidas.html">Dúvidas</a></li>
                     <li><a href="perfil.html">Perfil</a></li>
-                    <li><a href="admin.html" id="admin-link" style="display: none;">Admin</a></li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
@@ -34,6 +35,23 @@
                 <h1>Olá, <span id="user-name">Nome</span>. 👋</h1>
                 <p>Acompanhe aqui os valores para fazer o seu investimento social.</p>
             </header>
+
+            <section class="info-banner">
+                <div class="banner-content">
+                    <img src="imgs/moeda.png" alt="Ícone de Estrela">
+                    <div class="banner-text">
+                        <h2>Seu imposto pode contribuir para os projetos das Escolas Sociais Marista do estado do Paraná e de São Paulo.</h2>
+                        <p>Destine até 6% do imposto devido para os nossos projetos aprovados no Fundo da Infância e Adolescência.</p>
+                        <strong>Veja como é simples:</strong>
+                        <ol>
+                            <li>Calcule o valor que você pode destinar usando a calculadora abaixo.</li>
+                            <li>Salve o seu potencial de destinação para consultas futuras.</li>
+                            <li>Clique na aba Projetos e faça sua doação diretamente para o projeto.</li>
+                            <li>Pronto! Agora aguarde o recibo da sua doação para declarar no seu próximo imposto de renda!</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
 
             <section class="summary-section">
                 <h2>Resumo</h2>
@@ -56,17 +74,18 @@
             <section class="calculator-section">
                 <div class="calculator-box">
                     <h2>Calculadora do Potencial de Investimento Social</h2>
-                    <p>Calcule quanto do seu imposto de renda você pode destinar.</p>
+                    <p>Simule quanto do seu imposto de renda você pode destinar.</p>
                     <form id="calculator-form">
-                        <label for="tax-due">Valor do imposto de renda devido</label>
+                        <label for="tax-due">Valor do imposto de renda devido <span>&#9432;</span></label>
                         <input type="text" id="tax-due" placeholder="R$ 000.000,00">
-                        <button type="submit">Calcular</button>
+                        <button type="submit">Simular Potencial</button>
                     </form>
                 </div>
                 <div class="result-box">
-                    <p>Seu potencial de investimento social é:</p>
+                    <p>O potencial de investimento social para este valor é:</p>
                     <h3 id="investment-potential-result">R$ 0,00</h3>
                     <small>Este é aproximadamente o valor anual disponível para destinação, ele equivale a 6% do seu imposto devido. Caso sua renda ou deduções tenham variado este ano, o valor poderá ser diferente.</small>
+                    <button id="save-potential-button">Salvar o Seu Potencial</button>
                 </div>
             </section>
 
@@ -84,9 +103,13 @@
             </section>
 
             <section class="info-section">
-                <h3>Onde encontrar meu Imposto Devido?</h3>
-                <p>Abra seu <strong>Recibo de Entrega da Declaração de Imposto de Renda</strong> mais recente e localize a segunda linha, abaixo das informações do declarante.</p>
-                <img src="imgs/imagemRecibo.png" alt="Exemplo de onde encontrar o imposto devido na declaração" class="tax-example-img">
+                <details>
+                    <summary>Onde encontrar meu Imposto Devido?</summary>
+                    <div class="details-content">
+                        <p>Abra seu <strong>Recibo de Entrega da Declaração de Imposto de Renda</strong> mais recente e localize a segunda linha, abaixo das informações do declarante.</p>
+                        <img src="imgs/imagemRecibo.png" alt="Exemplo de onde encontrar o imposto devido na declaração" class="tax-example-img">
+                    </div>
+                </details>
             </section>
         </main>
     </div>

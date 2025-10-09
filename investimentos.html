@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Investimentos - Efeito Social</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/investimentos.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Área do Investidor Social</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html">Resumo</a></li>
+                    <li><a href="projeto.html">Projeto</a></li>
+                    <li class="active"><a href="investimentos.html">Meus Investimentos <span class="notification-badge" style="display: none;">1</span></a></li>
+                    <li><a href="admin.html" id="admin-link" style="display: none;">Admin</a></li>
+                    <li><a href="duvidas.html">Dúvidas</a></li>
+                    <li><a href="perfil.html">Perfil</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" id="logout-button">Sair</a>
+                <div class="sidebar-logos">
+                    <img src="imgs/efeitologo.png" alt="Efeito Logo" class="logo-efeito">
+                    <img src="imgs/cult.png" alt="Cult Imersiva Logo" class="logo-cult">
+                </div>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Meus Investimentos Sociais</h1>
+                <p>Acompanhe abaixo o seu investimento. Lembre que para você receber o recibo, é necessário encaminhar o comprovante de pagamento.</p>
+            </header>
+
+            <section class="summary-section">
+                <h2>Resumo</h2>
+                <div class="summary-cards">
+                    <div class="card">
+                        <label>Potencial de Investimento Social</label>
+                        <span id="potential-value">R$ 0,00</span>
+                    </div>
+                    <div class="card">
+                        <label>Valor Destinado</label>
+                        <span>R$ 0,00</span>
+                    </div>
+                    <div class="card">
+                        <label>Valor Restante</label>
+                        <span>R$ 0,00</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="investments-section">
+                <div class="investments-header">
+                    <h2>Investimentos realizados</h2>
+                    <select id="year-filter">
+                        <option value="2025">Ano 2025</option>
+                        <option value="2024">Ano 2024</option>
+                    </select>
+                </div>
+                <div class="investments-list" id="investments-list">
+                    <!-- Os cards de investimento serão gerados dinamicamente aqui -->
+                </div>
+            </section>
+
+            <section class="report-section">
+                <h2>Informe de Investimento Social</h2>
+                <p>O informe é um documento com os dados necessários para que você possa fazer o lançamento das suas destinações na declaração do IRPF. Ele será disponibilizado no fim do Ano Calendário vigente.</p>
+                <button id="download-report-button" disabled>Informe de Investimento Social 2025</button>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal de Exclusão -->
+    <div id="delete-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Excluir investimento?</h2>
+            <p>Esta ação removerá o registro desta destinação. Se você já realizou o pagamento, entre em contato conosco antes de excluir.</p>
+            <div class="modal-actions">
+                <button id="cancel-delete-button" class="btn-secondary">Não, manter</button>
+                <button id="confirm-delete-button" class="btn-danger">Sim, excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/investimentos.js"></script>
+</body>
+</html>
+>>>>>>> 3f7e2f4... feat: Adiciona a página de investimentos
