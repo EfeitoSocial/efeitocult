@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administração - Efeito Social</title>
+    <title>CRM - Efeito Social</title>
     <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/crm.css">
 </head>
 <body>
     <div class="dashboard-container">
@@ -18,10 +18,10 @@
                     <li><a href="dashboard.html">Resumo</a></li>
                     <li><a href="projeto.html">Projeto</a></li>
                     <li><a href="investimentos.html">Meus Investimentos</a></li>
+                    <li><a href="admin.html" id="admin-link" style="display: none;">Admin</a></li>
+                    <li class="active"><a href="crm.html" id="crm-link" style="display: none;">CRM</a></li>
                     <li><a href="duvidas.html">Dúvidas</a></li>
                     <li><a href="perfil.html">Perfil</a></li>
-                    <li class="active"><a href="admin.html">Administração</a></li>
-                    <li><a href="crm.html" id="crm-link" style="display: none;">CRM</a></li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
@@ -33,18 +33,27 @@
         </aside>
         <main class="main-content">
             <header class="main-header">
-                <div>
-                    <h1>Projetos Cadastrados</h1>
-                    <p>Visualize os projetos da sua organização e selecione qual deseja administrar as doações.</p>
-                </div>
-                <a href="cadastro-projeto.html" class="btn-new-project">+ Cadastrar Projeto</a>
+                <h1>CRM - Gestão de Leads</h1>
+                <p>Gerencie os contatos recebidos através do formulário.</p>
             </header>
 
-            <section class="projects-section" id="projects-list">
-                <!-- Os projetos serão listados aqui dinamicamente -->
-            </section>
+            <div id="kanban-board" class="kanban-board">
+                <!-- Colunas do Kanban serão geradas aqui -->
+            </div>
         </main>
     </div>
-    <script type="module" src="js/admin.js"></script>
+
+    <!-- Modal para Detalhes do Lead -->
+    <div id="lead-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-title">Detalhes do Lead</h2>
+            <form id="lead-form">
+                <!-- Campos do formulário serão preenchidos dinamicamente -->
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/crm.js"></script>
 </body>
 </html>

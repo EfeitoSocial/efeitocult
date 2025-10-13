@@ -18,6 +18,8 @@
                     <li><a href="dashboard.html">Resumo</a></li>
                     <li class="active"><a href="projeto.html">Projeto</a></li>
                     <li><a href="investimentos.html">Meus Investimentos</a></li>
+                    <li><a href="admin.html" id="admin-link" style="display: none;">Admin</a></li>
+                    <li><a href="crm.html" id="crm-link" style="display: none;">CRM</a></li>
                     <li><a href="duvidas.html">Dúvidas</a></li>
                     <li><a href="perfil.html">Perfil</a></li>
                 </ul>
@@ -26,18 +28,27 @@
                 <a href="#" id="logout-button">Sair</a>
                 <div class="sidebar-logos">
                     <img src="imgs/efeitologo.png" alt="Efeito Logo" class="logo-efeito">
-                    <img src="imgs/cult.png" alt="Cult Imersiva Logo" class="logo-cult">
                 </div>
             </div>
         </aside>
         <main class="main-content">
             <header class="main-header">
-                <h1>Projetos Disponíveis</h1>
+                <h1>Projetos</h1>
                 <p>Conheça os projetos que você pode apoiar.</p>
             </header>
 
-            <!-- A sanfona de projetos será preenchida aqui -->
-            <section class="projects-accordion" id="projects-accordion">
+            <section class="projects-grid" id="projects-grid">
+                <!-- Os cartões de projeto serão preenchidos aqui pelo JS -->
+            </section>
+
+            <section class="results-banner">
+                <div class="results-content">
+                    <img src="imgs/moeda.png" alt="Ícone de investimento">
+                    <div class="results-text">
+                        <h2>Onde seu investimento social gera <strong>resultados reais.</strong></h2>
+                        <p>Juntos podemos fazer a diferença.</p>
+                    </div>
+                </div>
             </section>
         </main>
     </div>

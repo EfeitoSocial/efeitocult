@@ -5,6 +5,8 @@ import { doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12
 const logoutButton = document.getElementById('logout-button');
 const userGreeting = document.getElementById('user-greeting');
 const userEmailDisplay = document.getElementById('user-email-display');
+const adminLink = document.getElementById('admin-link');
+const crmLink = document.getElementById('crm-link');
 
 // Form Elements
 const profileForm = document.getElementById('profile-form');
@@ -39,6 +41,10 @@ const loadUserData = async (uid) => {
             const data = docSnap.data();
             userGreeting.textContent = data.firstName || 'Olá';
             userEmailDisplay.textContent = data.email || '';
+            if (data.isAdmin === true) {
+                adminLink.style.display = 'block';
+                crmLink.style.display = 'block';
+            }
             
             // Personal
             nomeInput.value = data.firstName || '';

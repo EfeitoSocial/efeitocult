@@ -11,6 +11,7 @@ const investmentsList = document.getElementById('investments-list');
 const yearFilter = document.getElementById('year-filter');
 const notificationBadge = document.querySelector('.notification-badge');
 const adminLink = document.getElementById('admin-link');
+const crmLink = document.getElementById('crm-link');
 
 // Modal de Exclusão
 const deleteModal = document.getElementById('delete-modal');
@@ -93,7 +94,10 @@ const fetchUserData = async (uid) => {
         if (docSnap.exists()) {
             const userData = docSnap.data();
             if (userNameSpan) userNameSpan.textContent = userData.firstName || "Usuário";
-            if (userData.isAdmin) adminLink.style.display = 'block';
+            if (userData.isAdmin) {
+                adminLink.style.display = 'block';
+                crmLink.style.display = 'block';
+            }
         }
     } catch (error) {
         console.error("Erro ao buscar dados do usuário:", error);

@@ -12,6 +12,7 @@ const investmentPotentialResult = document.getElementById('investment-potential-
 const receiptsSection = document.getElementById('receipts-section');
 const receiptsList = document.getElementById('receipts-list');
 const adminLink = document.getElementById('admin-link');
+const crmLink = document.getElementById('crm-link');
 const savePotentialButton = document.getElementById('save-potential-button');
 
 let currentInvestmentPotential = 0; // To hold the value between simulation and saving
@@ -85,6 +86,7 @@ const fetchUserData = async (uid) => {
             // Check if user is an admin via Firestore field and show the admin link
             if (userData.isAdmin === true) {
                 adminLink.style.display = 'block';
+                crmLink.style.display = 'block';
             }
         } else {
             userNameSpan.textContent = "Usuário";

@@ -1,17 +1,38 @@
 import { auth, db } from './firebase.js';
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { doc, getDoc, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const logoutButton = document.getElementById('logout-button');
 const accordionItems = document.querySelectorAll('.accordion-item');
 const contactForm = document.getElementById('contact-form');
+const adminLink = document.getElementById('admin-link');
+const crmLink = document.getElementById('crm-link');
 
 // --- AUTHENTICATION ---
 onAuthStateChanged(auth, (user) => {
-    if (!user) {
+    if (user) {
+        fetchUserData(user.uid);
+    } else {
         window.location.href = 'login.html';
     }
 });
+
+const fetchUserData = async (uid) => {
+    try {
+        const userDocRef = doc(db, "users", uid);
+        const docSnap = await getDoc(userDocRef);
+
+        if (docSnap.exists()) {
+            const userData = docSnap.data();
+            if (userData.isAdmin === true) {
+                adminLink.style.display = 'block';
+                crmLink.style.display = 'block';
+            }
+        }
+    } catch (error) {
+        console.error("Error fetching user profile data:", error);
+    }
+};
 
 logoutButton.addEventListener('click', (e) => {
     e.preventDefault();

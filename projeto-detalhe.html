@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Projeto - Efeito Social</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Área do Investidor Social</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html">Resumo</a></li>
+                    <li class="active"><a href="projeto.html">Projeto</a></li>
+                    <li><a href="investimentos.html">Meus Investimentos</a></li>
+                    <li><a href="admin.html" id="admin-link" style="display: none;">Admin</a></li>
+                    <li><a href="duvidas.html">Dúvidas</a></li>
+                    <li><a href="perfil.html">Perfil</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" id="logout-button">Sair</a>
+                <div class="sidebar-logos">
+                    <img src="imgs/efeitologo.png" alt="Efeito Logo" class="logo-efeito">
+                </div>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="main-header">
+                <a href="projeto.html" class="back-link">&larr; Voltar</a>
+            </header>
+
+            <div class="project-detail-layout">
+                <div class="project-main-content">
+                    <div class="project-gallery">
+                        <!-- Imagens do projeto aqui -->
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category-detail"></span>
+                        <h1 id="project-name"></h1>
+                        <div class="project-location-detail">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/></svg>
+                            <span id="project-location"></span>
+                        </div>
+                        
+                        <h2>Resumo</h2>
+                        <p id="project-summary"></p>
+                        
+                        <h2>Impacto Gerado</h2>
+                        <p id="project-impact"></p>
+                        
+                        <h2>Escolas e Localidades Beneficiadas</h2>
+                        <ul id="project-locations-list"></ul>
+                        
+                        <h2>Principais Objetivos do Projeto</h2>
+                        <ol id="project-objectives-list"></ol>
+                    </div>
+                </div>
+                <div class="project-sidebar">
+                    <div class="investment-card">
+                        <div class="investment-header">
+                            <span>Meta de Arrecadação</span>
+                            <strong id="goal-amount"></strong>
+                        </div>
+                        <div class="investment-progress">
+                            <span>Arrecadado</span>
+                            <strong id="raised-amount"></strong>
+                            <div class="progress-bar">
+                                <div class="progress" id="progress-bar-fill"></div>
+                            </div>
+                            <span id="progress-percentage"></span>
+                        </div>
+                        <div class="investment-form">
+                            <label for="investment-amount">Quanto você quer destinar?</label>
+                            <input type="text" id="investment-amount" placeholder="R$ 2000,00">
+                            <small>Potencial de Investimento: <span id="user-potential"></span></small>
+                            <a href="#">Como é calculado o Potencial de Doação?</a>
+                            <button id="invest-button">Investir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="js/projeto-detalhe.js"></script>
+</body>
+</html>
