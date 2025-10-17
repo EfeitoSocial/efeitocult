@@ -270,54 +270,77 @@
 
         <section class="investment-form-intro">
             <div class="container">
-                <h2>Formulário do Investimento Social</h2>
-                <p>Após preencher as informações você receberá o recibo do imposto de renda por e-mail.</p>
-                <p>O valor destinado pode ser declarado e deduzido no imposto de renda pessoa física.</p>
+                <h2>Formulário do <strong>Investimento Social</strong></h2>
+                <p>Após preencher as informações você receberá o recibo do imposto de renda por e-mail. O valor destinado pode ser declarado e deduzido no imposto de renda pessoa física.</p>
                 <div class="contact-info-box">
-                    <p>Está com dúvidas? Entre em contato pelo e-mail xxxxxx ou Whatsapp (XX) XXXX-XXXX!</p>
+                    <p><strong>Está com dúvidas?</strong> Entre em contato pelo e-mail amigomarista@maristabrasil.org ou whatsapp (41) 98858-5127.</p>
                 </div>
             </div>
         </section>
 
         <section class="investment-form">
             <div class="container">
-                <div class="form-container">
-                    <div class="bank-details">
-                        <img src="imgs/moeda.png" alt="Moeda">
-                        <h3>Dados Bancários do Projeto</h3>
-                        <p>Banco do Brasil – 001</p>
-                        <p>Agência 0000-0</p>
-                        <p>Conta XXXXXX-X</p>
-                        <p>PIX: XXXXXXXXXXX</p>
+                <div class="bank-details-grid">
+                    <div class="bank-card">
+                        <h4>DADOS PROJETO <strong>PARANÁ</strong></h4>
+                        <p>Educação: o futuro é para todos - Ano 2</p>
+                        <p>CNPJ do Fundo: 10.632.896/0001-85</p>
+                        <p>Banco do Brasil - 001</p>
+                        <p>Agência 3793-1</p>
+                        <p>Conta 8297-X</p>
+                        <p><strong>PIX/CNPJ:</strong> 10.632.896/0001-85</p>
                     </div>
+                    <div class="bank-card">
+                        <h4>DADOS PROJETO <strong>SÃO PAULO</strong></h4>
+                        <p>Educação: o futuro é para todos - Ano 3</p>
+                        <p>CNPJ do Fundo: 13.885.657/0001-25</p>
+                        <p>Banco do Brasil - 001</p>
+                        <p>Agência 1897-X</p>
+                        <p>Conta 8947-8</p>
+                        <p><strong>PIX:</strong> em breve.</p>
+                    </div>
+                </div>
+                <div class="form-container">
+                    <h3>Dados do doador</h3>
+                    <p>As informações abaixo são necessárias para que a emissão do recibo seja possível pelo Conselho Estadual do Estado do Paraná e São Paulo.</p>
                     <form id="lead-form">
-                        <div class="form-group">
-                            <label for="name">NOME COMPLETO</label>
-                            <input type="text" id="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="cpf">CPF</label>
-                            <input type="text" id="cpf">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">CELULAR</label>
-                            <input type="text" id="phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-MAIL DE CONTATO</label>
-                            <input type="email" id="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="amount">VALOR DESTINADO (R$)</label>
-                            <input type="text" id="amount">
-                        </div>
-                        <div class="form-group">
-                            <label for="upload">COMPROVANTE DE PAGAMENTO</label>
-                            <input type="file" id="upload">
-                        </div>
-                        <div class="form-group checkbox">
-                            <input type="checkbox" id="terms">
-                            <label for="terms">Estou ciente que os dados acima são para uso do Recibo de Destinação.</label>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name">Nome</label>
+                                <input type="text" id="name" placeholder="Johnatan">
+                            </div>
+                            <div class="form-group">
+                                <label for="surname">Sobrenome</label>
+                                <input type="text" id="surname" placeholder="Castro">
+                            </div>
+                            <div class="form-group">
+                                <label for="cpf">CPF</label>
+                                <input type="text" id="cpf" placeholder="000.000.000-00">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Celular</label>
+                                <input type="text" id="phone" placeholder="(00) 0000-0000">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" id="email" placeholder="nome@gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="cep">CEP</label>
+                                <input type="text" id="cep" placeholder="00000-000">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Endereço Completo</label>
+                                <input type="text" id="address" placeholder="Nome da Rua e número">
+                            </div>
+                            <div class="form-group">
+                                <label for="amount">Valor destinado</label>
+                                <input type="text" id="amount" placeholder="R$000,000">
+                            </div>
+                            <div class="form-group">
+                                <label for="upload">Comprovante de pagamento</label>
+                                <input type="file" id="upload">
+                            </div>
                         </div>
                         <button type="submit" class="btn-submit">Enviar</button>
                     </form>
@@ -330,11 +353,15 @@
         <section class="results">
             <div class="container">
                 <div class="results-image">
-                    <img src="imgs/moeda.png" alt="Coração e moeda simbolizando investimento social">
+                    <img src="imgs/marista/maos.png" alt="Ilustração de mãos se cumprimentando">
                 </div>
                 <div class="results-content">
                     <h2>Onde seu investimento social gera <strong>resultados reais.</strong></h2>
                     <p>Juntos podemos fazer a diferença.</p>
+                    <div class="share-action">
+                        <img src="imgs/marista/whatsapp.png" alt="Ícone do Whatsapp">
+                        <a href="#">Compartilhe essa ação com seus amigos</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -384,6 +411,29 @@
                     document.getElementById(tabId).classList.add('active');
                 });
             });
+
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            const galleryImages = document.querySelectorAll('.gallery-images img');
+            let currentImageIndex = 0;
+
+            function showImage(index) {
+                galleryImages.forEach((img, i) => {
+                    img.classList.toggle('active', i === index);
+                });
+            }
+
+            if (prevBtn && nextBtn && galleryImages.length > 0) {
+                prevBtn.addEventListener('click', () => {
+                    currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                    showImage(currentImageIndex);
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                    showImage(currentImageIndex);
+                });
+            }
         });
     </script>
 </body>
