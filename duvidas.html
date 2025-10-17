@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dúvidas - Efeito Social</title>
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/chatFAQ.css">
 </head>
 <body>
     <div class="dashboard-container">
@@ -71,8 +72,9 @@
                         </div>
                     </div>
                 </section>
-
+                
                 <section class="contact-form-section">
+                    <!--
                     <h2>Entre em contato</h2>
                     <p>Se você tiver alguma dúvida sobre envio de comprovantes, recibos, relatórios ou qualquer outra coisa relacionada ao Investimento Social, estamos aqui para ajudar!</p>
                     <form id="contact-form">
@@ -91,10 +93,27 @@
                         </div>
                         <button type="submit" class="btn-submit">Enviar mensagem</button>
                     </form>
+                    -->
+
+                    <!-- Chat -->
+                    <div id="chat-widget-container">
+                        <h2 id="chat-widget-header">Mais Alguma Dúvida?</h2>
+                        <p>Se você tiver alguma dúvida sobre envio de comprovantes, recibos, relatórios ou qualquer outra coisa relacionada ao Investimento Social, estamos aqui para ajudar!</p>
+                        <div id="chat-widget-body"></div>
+                        <div id="chat-widget-footer">
+                            <input type="text" id="chat-widget-input" placeholder="Digite sua mensagem aqui...">
+                            <button id="chat-widget-send">Enviar</button>
+                        </div>
+                    </div>
+
+
                 </section>
             </div>
         </main>
     </div>
     <script type="module" src="js/duvidas.js"></script>
+    <script type="module" src="js/chatFAQ.js"></script>
+
+
 </body>
 </html>
