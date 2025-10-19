@@ -861,6 +861,12 @@ section {
     margin-top: 20px;
 }
 
+.error-message {
+    color: red;
+    font-size: 0.8em;
+    height: 1em;
+}
+
 /* Results Section */
 .results {
     background-color: var(--background-gray);

@@ -33,16 +33,82 @@
         </aside>
         <main class="main-content">
             <header class="main-header">
-                <div>
-                    <h1>Projetos Cadastrados</h1>
-                    <p>Visualize os projetos da sua organização e selecione qual deseja administrar as doações.</p>
-                </div>
-                <a href="cadastro-projeto.html" class="btn-new-project">+ Cadastrar Projeto</a>
+                <h1>Painel de Administração</h1>
             </header>
 
-            <section class="projects-section" id="projects-list">
-                <!-- Os projetos serão listados aqui dinamicamente -->
-            </section>
+            <div class="tabs">
+                <button class="tab-link active" data-tab="projects">Projetos</button>
+                <button class="tab-link" data-tab="donations">Doações</button>
+                <button class="tab-link" data-tab="users">Usuários</button>
+                <button class="tab-link" data-tab="messages">Mensagens</button>
+            </div>
+
+            <div id="projects" class="tab-content active">
+                <div class="tab-header">
+                    <h2>Projetos Cadastrados</h2>
+                    <a href="cadastro-projeto.html" class="btn-new-project">+ Cadastrar Projeto</a>
+                </div>
+                <section class="projects-section" id="projects-list">
+                    <!-- Os projetos serão listados aqui dinamicamente -->
+                </section>
+            </div>
+
+            <div id="donations" class="tab-content">
+                <div class="tab-header">
+                    <h2>Controle de Doações</h2>
+                </div>
+                <div class="filters">
+                    <label for="filter-date" class="visually-hidden">Filtrar por data</label>
+                    <input type="date" id="filter-date">
+                    <label for="filter-project" class="visually-hidden">Filtrar por projeto</label>
+                    <select id="filter-project">
+                        <option value="">Todos os Projetos</option>
+                    </select>
+                </div>
+                <table class="donations-table">
+                    <thead>
+                        <tr>
+                            <th>Doador</th>
+                            <th>Data</th>
+                            <th>Valor</th>
+                            <th>Projeto</th>
+                            <th>Comprovante</th>
+                            <th>Recibo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="donations-list">
+                        <!-- As doações serão listadas aqui -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="users" class="tab-content">
+                <div class="tab-header">
+                    <h2>Usuários Cadastrados</h2>
+                </div>
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Data de Cadastro</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-list">
+                        <!-- Os usuários serão listados aqui -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="messages" class="tab-content">
+                <div class="tab-header">
+                    <h2>Mensagens de Contato</h2>
+                </div>
+                <div class="messages-list" id="messages-list">
+                    <!-- As mensagens serão listadas aqui -->
+                </div>
+            </div>
+
         </main>
     </div>
     <script type="module" src="js/admin.js"></script>

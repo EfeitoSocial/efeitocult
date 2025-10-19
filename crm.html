@@ -37,6 +37,31 @@
                 <p>Gerencie os contatos recebidos através do formulário.</p>
             </header>
 
+            <div class="crm-controls">
+                <div>
+                    <label for="funnel-select">Funil:</label>
+                    <select id="funnel-select" title="Selecione um Funil">
+                        <option value="">Selecione um Funil</option>
+                    </select>
+                    <button id="new-funnel-button">Novo Funil</button>
+                    <button id="delete-funnel-button" class="btn-danger">Apagar Funil</button>
+                </div>
+                <div class="admin-actions">
+                    <button id="import-leads-button">Importar Leads</button>
+                    <button id="export-leads-button">Exportar Leads</button>
+                </div>
+            </div>
+
+            <div class="filters">
+                <input type="date" id="start-date-filter" title="Data de Início">
+                <input type="date" id="end-date-filter" title="Data Final">
+                <select id="region-filter" title="Filtrar por Região">
+                    <option value="">Todas as Regiões</option>
+                    <!-- Opções de região serão adicionadas dinamicamente -->
+                </select>
+                <button id="apply-filters-button">Aplicar Filtros</button>
+            </div>
+
             <div id="kanban-board" class="kanban-board">
                 <!-- Colunas do Kanban serão geradas aqui -->
             </div>
@@ -50,6 +75,27 @@
             <h2 id="modal-title">Detalhes do Lead</h2>
             <form id="lead-form">
                 <!-- Campos do formulário serão preenchidos dinamicamente -->
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Novo Funil -->
+    <div id="funnel-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Novo Funil</h2>
+            <form id="funnel-form">
+                <div class="form-group">
+                    <label for="funnel-name">Nome do Funil</label>
+                    <input type="text" id="funnel-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="funnel-columns">Colunas (separadas por vírgula)</label>
+                    <input type="text" id="funnel-columns" placeholder="Ex: Novo, Contato, Proposta" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit">Salvar Funil</button>
+                </div>
             </form>
         </div>
     </div>

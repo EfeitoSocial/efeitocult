@@ -1,3 +1,87 @@
+.crm-controls {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.crm-controls div {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.admin-actions button {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #CED4DA;
+    background-color: #FFFFFF;
+    color: #0B1A4A;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+#funnel-select, #new-funnel-button {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #CED4DA;
+    font-size: 1rem;
+}
+
+#new-funnel-button {
+    background-color: #0B1A4A;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+#delete-funnel-button {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+#funnel-form .form-group {
+    margin-bottom: 16px;
+}
+
+#funnel-form label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+#funnel-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #CED4DA;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.filters {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.filters input, .filters select, .filters button {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #CED4DA;
+    font-size: 1rem;
+}
+
+.filters button {
+    background-color: #0B1A4A;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
 .kanban-board {
     display: flex;
     gap: 24px;
@@ -36,6 +120,28 @@
     border: 1px solid #E9ECEF;
     cursor: grab;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-content {
+    flex-grow: 1;
+}
+
+.card-actions {
+    display: flex;
+    align-items: center;
+}
+
+.whatsapp-button {
+    display: inline-block;
+    margin-left: 16px;
+}
+
+.whatsapp-button img {
+    width: 24px;
+    height: 24px;
 }
 
 .kanban-card.dragging {
@@ -92,12 +198,14 @@
     margin-bottom: 8px;
 }
 
-#lead-form select {
+#lead-form select,
+#lead-form textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #CED4DA;
     border-radius: 8px;
     font-size: 1rem;
+    box-sizing: border-box;
 }
 
 .modal-actions {
