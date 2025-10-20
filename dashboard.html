@@ -26,7 +26,8 @@
             <div class="sidebar-footer">
                 <a href="#" id="logout-button">Sair</a>
                 <div class="sidebar-logos">
-                    <img src="imgs/efeitologo.png" alt="Efeito Logo" class="logo-efeito">
+                    <img src="imgs/maristalogowhite.png" alt="Marista Logo" class="logo-marista">
+                    <img src="imgs/efeitologowhite.png" alt="Efeito Logo" class="logo-efeito">
                 </div>
             </div>
         </aside>
@@ -38,7 +39,7 @@
 
             <section class="info-banner">
                 <div class="banner-content">
-                    <img src="imgs/moeda.png" alt="Ícone de Estrela">
+                    <img src="imgs/florCoracao.png" alt="Ícone de Estrela">
                     <div class="banner-text">
                         <h2>Seu imposto pode contribuir para os projetos das Escolas Sociais Marista do estado do Paraná e de São Paulo.</h2>
                         <p>Destine até 6% do imposto devido para os nossos projetos aprovados no Fundo da Infância e Adolescência.</p>
@@ -53,27 +54,34 @@
                 </div>
             </section>
 
+            <h2 class="summary-title">Resumo</h2>
             <section class="summary-section">
-                <h2>Resumo</h2>
                 <div class="summary-cards">
                     <div class="card">
-                        <label>Potencial de Investimento Social</label>
-                        <span id="potential-value">R$ 0,00</span>
+                        <label> Seu Potencial de Investimento Social</label>
+                        <div class="text-box">
+                            <span id="potential-value">R$ 0,00</span>
+                        </div>
                     </div>
                     <div class="card">
                         <label>Valor Destinado</label>
-                        <span>R$ 0,00</span>
+                        <div class="text-box">
+                            <span>R$ 0,00</span>
+                        </div>
                     </div>
                     <div class="card">
                         <label>Valor Restante</label>
-                        <span>R$ 0,00</span>
+                        <div class="text-box">
+                            <span>R$ 0,00</span>
+                        </div>
                     </div>
                 </div>
             </section>
 
+
+            <h2 class="calculator-title">Calculadora do Potencial de Investimento Social</h2>
             <section class="calculator-section">
                 <div class="calculator-box">
-                    <h2>Calculadora do Potencial de Investimento Social</h2>
                     <p>Simule quanto do seu imposto de renda você pode destinar.</p>
                     <form id="calculator-form">
                         <label for="tax-due">Valor do imposto de renda devido <span>&#9432;</span></label>
@@ -89,6 +97,14 @@
                 </div>
             </section>
 
+            <details class="info-section">
+                <summary>Onde encontrar meu Imposto Devido?</summary>
+                <div class="details-content">
+                    <p>Abra seu <strong>Recibo de Entrega da Declaração de Imposto de Renda</strong> mais recente e localize a segunda linha, abaixo das informações do declarante.</p>
+                    <img src="imgs/reciboIRPF.png" alt="Exemplo de onde encontrar o imposto devido na declaração" class="tax-example-img">
+                </div>
+            </details>
+
             <section class="receipts-section" id="receipts-section" style="display: none;">
                 <div class="receipts-header">
                     <h2>Recibos - Investimento Social</h2>
@@ -100,16 +116,6 @@
                 <div class="receipts-list" id="receipts-list">
                     <!-- A lista de recibos será gerada dinamicamente aqui -->
                 </div>
-            </section>
-
-            <section class="info-section">
-                <details>
-                    <summary>Onde encontrar meu Imposto Devido?</summary>
-                    <div class="details-content">
-                        <p>Abra seu <strong>Recibo de Entrega da Declaração de Imposto de Renda</strong> mais recente e localize a segunda linha, abaixo das informações do declarante.</p>
-                        <img src="imgs/imagemRecibo.png" alt="Exemplo de onde encontrar o imposto devido na declaração" class="tax-example-img">
-                    </div>
-                </details>
             </section>
         </main>
     </div>
