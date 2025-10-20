@@ -80,6 +80,10 @@ section {
     margin-top: 30px;
 }
 
+.font-18{
+    font-size: 18px;
+}
+
 /* Header */
 .main-header {
     background-color: var(--dark-blue);
@@ -378,8 +382,11 @@ section {
     padding: 30px;
     border-radius: 20px;
     position: relative;
+    align-content: end;
+    color: var(--dark-blue);
 }
 .option-card h3 {
+    margin-top: 20px;
     margin-bottom: 15px;
 }
 .option-card p {
@@ -447,8 +454,22 @@ section {
 }
 #vector1{
     position: absolute;
-    top: 118px;
+    top: 110px;
     left: 15px;
+}
+#vector2{
+    position: absolute;
+    top: -22px;
+    left: 505px;
+}
+#vector3{
+    position: absolute;
+    left: 750px;
+}
+#vector4{
+    position: absolute;
+    top: -6px;
+    left: 1020px;
 }
 .how-to-calculate h2,
 .how-to-calculate > p {
@@ -549,7 +570,7 @@ section {
     font-size: 18px;
     width: 55%;
     padding: 15px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--dark-blue);
     border-radius: 12px;
     margin-right: 20px;
 }
@@ -822,6 +843,7 @@ section {
     margin-left: -20px;
     flex: 1;
     max-width: 870px;
+    color: #115980;
 }
 .contact-info-box img{
     width: 43px;
@@ -875,6 +897,12 @@ section {
     margin-top: 15px;
     display: flex;
     flex: 1;
+}
+.bank-details #identifier{
+    color: var(--dark-blue);
+    font-weight: 500;
+    max-width: 300px;
+    margin-bottom: 5px;
 }
 .bank-details .pix p{
     margin-left: 10px;
@@ -1249,6 +1277,11 @@ section {
     padding: 80px 0;
     text-align: left;
 }
+.education-future .container .img img{
+    position: absolute;
+    margin-top: -284px;
+    margin-left: 800px;
+}
 
 .education-future h2 {
     color: var(--text-light);
@@ -1304,6 +1337,12 @@ section {
     margin-bottom: 5px;
     font-weight: 800;
 }
+.project-card p, span{
+    font-weight: 500;
+}
+.project-card p{
+    margin-bottom: 10px;
+}
 
 .project-value {
     color: var(--light-blue);
@@ -1339,6 +1378,7 @@ section {
     flex-wrap: wrap;
     justify-content: left;
     gap: 10px;
+    max-width: 300px;
 }
 
 .locations span {
