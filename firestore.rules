@@ -1,0 +1,73 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --- Funções de Apoio ---
+    function isAdmin() {
+      return exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    }
+
+    function isCrmUser() {
+      let userDoc = get(/databases/$(database)/documents/users/$(request.auth.uid));
+      return exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             (userDoc.data.isAdmin == true ||
+              userDoc.data.profile == 'Operacional' ||
+              userDoc.data.profile == 'Técnico');
+    }
+
+    // --- Regras por Coleção ---
+
+    // Regras para a coleção 'leads'
+    match /leads/{leadId} {
+      // Permite que qualquer pessoa crie um lead (ex: formulário público)
+      allow create: if true; 
+      // Apenas usuários do CRM (Admin, Operacional, Técnico) podem ler e modificar
+      allow read, update, delete: if isCrmUser();
+    }
+
+    // Regras para a coleção 'funnels' (NOVO)
+    match /funnels/{funnelId} {
+      // Apenas usuários do CRM podem ver os funis
+      allow read: if isCrmUser();
+      // Apenas administradores podem criar, editar ou apagar funis
+      allow write: if isAdmin();
+    }
+
+    // Regras para a coleção 'users'
+    match /users/{userId} {
+      // Admins podem ler todos os usuários, e usuários normais podem ler apenas seus próprios dados.
+      allow read: if isAdmin() || request.auth.uid == userId;
+      // Usuários podem criar e atualizar seus próprios perfis.
+      allow create, update: if request.auth.uid == userId;
+
+      match /investments/{investmentId} {
+        allow read, write: if request.auth.uid == userId;
+      }
+    }
+
+    // Regras para a coleção 'projects'
+    match /projects/{projectId} {
+      allow read: if request.auth != null;
+      allow write: if isAdmin();
+    }
+
+    // Regras para a coleção 'donations'
+    match /donations/{donationId} {
+      // A leitura de doações é permitida para administradores para evitar que usuários vejam doações de outros
+      allow read: if isAdmin();
+      // A escrita (criação) de doações é permitida para qualquer usuário autenticado
+      allow create: if request.auth != null;
+      // Apenas administradores podem modificar ou deletar doações
+      allow update, delete: if isAdmin();
+    }
+
+    // Regras para a coleção 'contactMessages'
+    match /contactMessages/{messageId} {
+      // Qualquer pessoa pode enviar uma mensagem de contato
+      allow create: if true;
+      // Apenas administradores podem ler ou apagar mensagens
+      allow read, delete: if isAdmin();
+    }
+  }
+}

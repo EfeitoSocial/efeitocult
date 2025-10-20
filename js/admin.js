@@ -165,6 +165,9 @@ async function loadDonations() {
 
         if (filterDate) {
             donations = donations.filter(d => {
+                if (!d.date || typeof d.date.toDate !== 'function') {
+                    return false;
+                }
                 const donationDate = d.date.toDate().toISOString().split('T')[0];
                 return donationDate === filterDate;
             });
@@ -180,9 +183,10 @@ async function loadDonations() {
             const projectName = projectDoc.exists() ? projectDoc.data().name : "Projeto não encontrado";
             
             const row = document.createElement('tr');
+            const donationDate = donation.date && donation.date.toDate ? donation.date.toDate().toLocaleDateString('pt-BR') : 'N/A';
             row.innerHTML = `
                 <td>${donation.donorName || 'Anônimo'}</td>
-                <td>${donation.date.toDate().toLocaleDateString('pt-BR')}</td>
+                <td>${donationDate}</td>
                 <td>R$ ${donation.value.toFixed(2).replace('.', ',')}</td>
                 <td>${projectName}</td>
                 <td><a href="${donation.proofUrl || '#'}" target="_blank" rel="noopener noreferrer">${donation.proofUrl ? 'Ver' : 'N/A'}</a></td>
