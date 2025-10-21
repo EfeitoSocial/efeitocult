@@ -124,11 +124,11 @@ body.register-page-body {
 .login-link {
     margin-top: 25px;
     font-size: 0.9rem;
-    color: #555;
+    color: var(--dark-blue);
 }
 
 .login-link a {
-    color: var(--primary-blue);
+    color: var(--light-blue);
     text-decoration: none;
     font-weight: 600;
 }
