@@ -5,6 +5,7 @@ import { doc, getDoc, collection, getDocs, query, where, addDoc } from "https://
 // --- DOM ELEMENTS ---
 const logoutButton = document.getElementById('logout-button');
 const adminLink = document.getElementById('admin-link');
+const crmLink = document.getElementById('crm-link');
 const projectName = document.getElementById('project-name');
 const projectCategory = document.querySelector('.project-category-detail');
 const projectLocation = document.getElementById('project-location');
@@ -32,68 +33,24 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        const isAdmin = userDoc.exists() && userDoc.data().isAdmin === true;
+        if (isAdmin) {
+            adminLink.style.display = 'block';
+            crmLink.style.display = 'block';
+        }
+        loadActiveProjects(isAdmin);
+    } else {
+        window.location.href = 'login.html';
+    }
+});
+
 logoutButton.addEventListener('click', (e) => {
     e.preventDefault();
     signOut(auth).catch((error) => console.error('Sign out error:', error));
 });
-
-async function fetchPageData(uid) {
-    const urlParams = new URLSearchParams(window.location.search);
-    const projectId = urlParams.get('id');
-
-    if (!projectId) {
-        document.querySelector('.project-main-content').innerHTML = '<h1>Projeto não encontrado.</h1>';
-        return;
-    }
-
-    try {
-        // Fetch user data (for admin check and potential)
-        const userDocRef = doc(db, "users", uid);
-        const userDocSnap = await getDoc(userDocRef);
-        if (userDocSnap.exists()) {
-            const userData = userDocSnap.data();
-            if (userData.isAdmin) {
-                adminLink.style.display = 'block';
-            }
-            // You might want to display the user's investment potential here
-            // userPotential.textContent = formatCurrency(userData.investmentPotential || 0);
-        }
-
-        // Fetch project data
-        const projectDocRef = doc(db, "projects", projectId);
-        const projectDocSnap = await getDoc(projectDocRef);
-
-        if (projectDocSnap.exists()) {
-            const projectData = projectDocSnap.data();
-            renderProjectDetails(projectData);
-        } else {
-            document.querySelector('.project-main-content').innerHTML = '<h1>Projeto não encontrado.</h1>';
-        }
-
-    } catch (error) {
-        console.error("Error fetching page data:", error);
-    }
-}
-
-function renderProjectDetails(project) {
-    projectName.textContent = project.name;
-    projectCategory.textContent = project.category || 'Categoria';
-    projectLocation.textContent = project.location || 'Localização';
-    projectSummary.textContent = project.summary || 'Resumo não disponível.';
-    projectImpact.textContent = project.impact || 'Impacto não disponível.';
-    goalAmount.textContent = formatCurrency(project.goalAmount || 0);
-
-    // Render lists
-    projectLocationsList.innerHTML = (project.benefitedLocations || []).map(item => `<li>${item}</li>`).join('');
-    projectObjectivesList.innerHTML = (project.objectives || []).map(item => `<li>${item}</li>`).join('');
-
-    // Handle investment logic here (this is a simplified example)
-    const currentlyRaised = 0; // This should be calculated from actual donations
-    const percentage = project.goalAmount ? (currentlyRaised / project.goalAmount) * 100 : 0;
-    raisedAmount.textContent = formatCurrency(currentlyRaised);
-    progressBarFill.style.width = `${percentage}%`;
-    progressPercentage.textContent = `${percentage.toFixed(0)}%`;
-}
 
 investButton.addEventListener('click', async () => {
     const amountValue = parseFloat(investmentAmountInput.value.replace(/[^0-9,-]+/g,"").replace(",","."));
