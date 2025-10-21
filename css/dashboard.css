@@ -1519,7 +1519,7 @@ body {
     border: 2px solid var(--Text-Dark-Marista, #003A60);
 }
 .investment-form input::placeholder{
-    color: #003A60;
+    color: #4486B3;
     font-family: 'Rubik';
     font-weight: 600;
     font-size: 16px;
