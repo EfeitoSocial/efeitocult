@@ -50,15 +50,24 @@ leadForm.addEventListener('submit', async (e) => {
 
 // Upload field
 const files = document.getElementById('files');
+const fileInput = document.getElementById('upload');
 const card = document.createElement('div');
 card.className = 'form-group';
 
 card.innerHTML = `
-    <label>Comprovante de pagamento</label>
-    <input type="file" id="upload" class="hidden">
     <label for="upload" class="files"><img src="imgs/uploadicon.png"><span>Anexar Arquivo</span></label>
 `;
-
+fileInput.addEventListener("change", function(){
+    if(fileInput.files.length == 0){
+        card.innerHTML = `
+        <label for="upload" class="files"><img src="imgs/uploadicon.png"><span>Anexar Arquivo</span></label>
+        `;
+    }else{
+        card.innerHTML = `
+        <label for="upload" class="files-done"><img src="imgs/uploadDoneicon.png"><span>Comprovante Anexado</span></label>
+        `;
+    }
+});
 files.appendChild(card);
 
 
