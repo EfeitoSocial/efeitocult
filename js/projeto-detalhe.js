@@ -1,6 +1,7 @@
-import { auth, db } from './firebase.js';
+import { auth, db, storage } from './firebase.js';
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { doc, getDoc, collection, getDocs, query, where, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 // --- DOM ELEMENTS ---
 const logoutButton = document.getElementById('logout-button');
@@ -17,22 +18,14 @@ const goalAmount = document.getElementById('goal-amount');
 const raisedAmount = document.getElementById('raised-amount');
 const progressBarFill = document.getElementById('progress-bar-fill');
 const progressPercentage = document.getElementById('progress-percentage');
-const userPotential = document.getElementById('user-potential');
+const userPotentialSpan = document.getElementById('user-potential');
 const investButton = document.getElementById('invest-button');
-const investmentAmountInput = document.getElementById('investment-amount');
+
 
 // --- HELPERS ---
 const formatCurrency = (value) => value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
 // --- AUTH & DATA FETCHING ---
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        fetchPageData(user.uid);
-    } else {
-        window.location.href = 'login.html';
-    }
-});
-
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         const userDoc = await getDoc(doc(db, "users", user.uid));
@@ -81,4 +74,37 @@ investButton.addEventListener('click', async () => {
             alert('Ocorreu um erro ao registrar seu investimento.');
         }
     }
+});
+
+// --- USER POTENCIAL ---
+const fetchUserData = async (uid) => {
+    try {
+        const investmentsColRef = collection(db, "users", uid, "investments");
+        const investmentsSnapshot = await getDocs(investmentsColRef);
+        const investments = investmentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        
+        const totalPotential = investments.reduce((sum, inv) => sum + inv.amount, 0);
+        userPotentialSpan.textContent = formatCurrency(totalPotential);
+
+    } catch (error) {
+        console.error("Erro ao buscar investimentos:", error);
+    }
+};
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        fetchUserData(user.uid);
+    } else {
+        window.location.href = 'login.html';
+    }
+});
+
+// --- INVESTMENT AMOUNT ON POPUP ---
+let investmentAmountSpan = document.getElementById('donation-amount');
+const investmentAmountInput = document.getElementById('investment-amount');
+investmentAmountSpan.textContent = "R$ 0,00";
+investmentAmountInput.addEventListener('input', (e) => {
+    let value = e.target.value.replace(/\D/g, '');
+    value = (parseInt(value, 10) / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+    e.target.value = value === 'NaN' ? '' : 'R$' + value;
+    investmentAmountSpan.textContent = value === 'NaN' ? '' : 'R$' + value;
 });
