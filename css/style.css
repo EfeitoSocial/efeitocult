@@ -943,9 +943,27 @@ section {
     gap: 10px;
     justify-content: center;
 }
+
 .files img{
     max-height: 20px;
 }
+.form-group .files-done{
+    padding: 8px 12px;
+    border: 1px solid var(--text-light);
+    border-radius: 8px;
+    font-family: 'Rubik';
+    font-weight: 400;
+    cursor: pointer;
+    background-color: var(--background-light);
+    color: #4abb08;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+.files-done img{
+    max-height: 20px;
+}
+
 .form-group select {
     padding: 8px 12px;
     border: 1px solid var(--text-light);
@@ -989,7 +1007,7 @@ section {
 .form-group #upload{
     text-align: center;
 }
-.form-group .hidden{
+.hidden{
     display: none;
 }
 
