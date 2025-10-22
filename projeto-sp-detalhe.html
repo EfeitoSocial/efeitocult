@@ -131,11 +131,10 @@
                             <label for="investment-amount">Quanto você quer destinar?</label>
                             <input type="text" id="investment-amount" placeholder="R$ 0,00">
                             <div class="potencial">
-                                <p>Potencial de Investimento: <span id="user-potential"></span></p>
-                                <p>R$ 00.000,00</p>
+                                <p>Potencial de Investimento:</p>
+                                <p><span id="user-potential"></span></p>
                             </div>
                             <a href="#">&#9432; Como é calculado o Potencial de Doação?</a>
-                            <br>
                             <a href="#" id="invest-button">Investir</a>
 
                             <div id="modal">
@@ -153,7 +152,7 @@
                                     <div class="payment-info">
                                         <img src="imgs/QRcodePR.png">
                                         <h4>Projeto Educação: o futuro é para todos - Ano 3 (SÃO PAULO)</h4>
-                                        <p>R$ 0.000,00</p>
+                                        <p><span id="donation-amount"></span></p>
                                         <h3>00020101021226770154851890...</h3>
                                     </div>
                                     <div class="payment-btns">
@@ -209,5 +208,6 @@
             dots[slideIndex-1].className += " active";
         }
     </script>
+    <script type="module" src="js/projeto-detalhe.js"></script>
 </body>
 </html>
