@@ -1010,6 +1010,16 @@ section {
 .hidden{
     display: none;
 }
+.warning{
+    color: #d80101;
+    padding-left: 6px;
+    position: absolute;
+    margin-top: 64px;
+}
+.form-group input.warning-border{
+    border: 2px solid red;
+}
+
 
 /* Results Section */
 .what-are {
