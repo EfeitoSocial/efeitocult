@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dúvidas - Efeito Social</title>
     <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/chatFAQ.css">
 </head>
 <body>
     <div class="dashboard-container">
@@ -35,90 +34,75 @@
         
         
         <main class="main-content">
-        <h1 class="under-construction">Estamos trabalhando nisso!</h1>
-            <!--
+        <!--<h1 class="under-construction">Estamos trabalhando nisso!</h1>-->
             <div class="faq-container">
-                <h2>Principais dúvidas</h2>
-                <section class="faq-videos">
-                    <div class="video-placeholder"><span>Título do vídeo</span></div>
-                    <div class="video-placeholder"><span>Título do vídeo</span></div>
-                    <div class="video-placeholder"><span>Título do vídeo</span></div>
-                </section>
-
-                <section class="faq-accordion">
-                    <div class="accordion-item">
-                        <button class="accordion-header">Qual percentual do meu imposto de renda posso investir?</button>
-                        <div class="accordion-content">
-                            <p>Pela legislação atual, o contribuinte pessoa física poderá destinar até <strong>7% do imposto de renda devido</strong> para projetos aprovados para receberem recursos pelas leis de incentivo fiscal, sendo 1% exclusivo para a Lei do Esporte.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-header">Posso destinar para mais de um projeto?</button>
-                        <div class="accordion-content">
-                            <p>Nós acreditamos que cada um de nós tem o poder de fazer a diferença e tornar o mundo um lugar melhor. É por isso que criamos a e.feito Social, uma plataforma que facilita a doação de parte do imposto de renda devido por pessoas físicas para projetos sociais e culturais, por meio de leis de incentivo fiscal.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-header">Quanto posso destinar para cada uma das categorias (esporte, cultura, infância e adolescência, idoso, reciclagem e audiovisual)?</button>
-                        <div class="accordion-content">
-                            <p>Nós acreditamos que cada um de nós tem o poder de fazer a diferença e tornar o mundo um lugar melhor. É por isso que criamos a e.feito Social, uma plataforma que facilita a doação de parte do imposto de renda devido por pessoas físicas para projetos sociais e culturais, por meio de leis de incentivo fiscal.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-header">Como eu realizo o pagamento do investimento social?</button>
-                        <div class="accordion-content">
-                            <p>Nós acreditamos que cada um de nós tem o poder de fazer a diferença e tornar o mundo um lugar melhor. É por isso que criamos a e.feito Social, uma plataforma que facilita a doação de parte do imposto de renda devido por pessoas físicas para projetos sociais e culturais, por meio de leis de incentivo fiscal.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-header">Por que usar a plataforma para destinar se é possível destinar parte do imposto de renda devido direto pelo programa da Receita Federal?</button>
-                        <div class="accordion-content">
-                            <p>Nós acreditamos que cada um de nós tem o poder de fazer a diferença e tornar o mundo um lugar melhor. É por isso que criamos a e.feito Social, uma plataforma que facilita a doação de parte do imposto de renda devido por pessoas físicas para projetos sociais e culturais, por meio de leis de incentivo fiscal.</p>
-                        </div>
-                    </div>
-                </section>
-                
-                <section class="contact-form-section">
-                    
-                    <h2>Entre em contato</h2>
-                    <p>Se você tiver alguma dúvida sobre envio de comprovantes, recibos, relatórios ou qualquer outra coisa relacionada ao Investimento Social, estamos aqui para ajudar!</p>
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <label for="assunto">ASSUNTO *</label>
-                            <select id="assunto" required>
-                                <option value="">Selecione uma opção</option>
-                                <option value="duvida_comprovante">Dúvida sobre comprovante</option>
-                                <option value="duvida_recibo">Dúvida sobre recibo</option>
-                                <option value="outros">Outros</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="mensagem">MENSAGEM *</label>
-                            <textarea id="mensagem" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-submit">Enviar mensagem</button>
-                    </form>
-
-                     Chat 
+                <section class="chat-section">
                     <div id="chat-widget-container">
-                        <h2 id="chat-widget-header">Mais Alguma Dúvida?</h2>
-                        <p>Se você tiver alguma dúvida sobre envio de comprovantes, recibos, relatórios ou qualquer outra coisa relacionada ao Investimento Social, estamos aqui para ajudar!</p>
+                        <h2 id="chat-widget-header">Como posso ajudar?</h2>
                         <div id="chat-widget-body"></div>
                         <div id="chat-widget-footer">
-                            <input type="text" id="chat-widget-input" placeholder="Digite sua mensagem aqui...">
+                            <input type="text" id="chat-widget-input" placeholder="Pergunte alguma coisa">
                             <button id="chat-widget-send">Enviar</button>
                         </div>
                     </div>
-
-
+                    <div class="suggestions">
+                        <p class="suggestions-text">Sugestões</p>
+                        <p>Clique para ver a resposta</p>
+                        <div class="suggestion-cards">
+                            <div class="card-row">
+                                <a id="what-are">O que são leis de incentivo fiscal?</a>
+                                <a id="who-can">Quem pode destinar imposto de renda para projetos sócio-culturais?</a>
+                            </div>
+                            <div class="card-row">
+                                <a id="what-percentage">Qual percentual do meu imposto de renda posso investir para cultura?</a>
+                                <a id="can-i-destine">Posso destinar para mais de um projeto?</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                     
+                    
+                <section class="contact-form-section">
+                    <div class="contact-text">
+                        <h2>Entre em contato</h2>
+                        <p>Se você tiver alguma dúvida sobre envio de comprovantes, recibos, relatórios ou qualquer outra coisa relacionada ao Investimento Social, estamos aqui para ajudar!</p>
+                    </div>
+                    <div class="contact-question">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="assunto">Assunto*</label>
+                                <select id="assunto" required>
+                                    <option value="" hidden>Selecione uma opção</option>
+                                    <option value="duvida_comprovante">Dúvida sobre comprovante</option>
+                                    <option value="duvida_recibo">Dúvida sobre recibo</option>
+                                    <option value="outros">Outros</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="contato">Escolha o meio de contato*</label>
+                                <select id="contato" required>
+                                    <option value="" hidden>Selecione uma opção</option>
+                                    <option value="email">E-mail</option>
+                                    <option value="whatsapp">Whatsapp</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="meio-contato">Contato*</label>
+                                <input id="meio-contato" type="text" placeholder="E-mail, Whatsapp ou outro contato">
+                            </div>
+                            <div class="form-group">
+                                <label for="mensagem">Mensagem*</label>
+                                <textarea id="mensagem" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">Enviar mensagem</button>
+                        </form>
+                    </div>
                 </section>
             </div>
         </main>
-        -->
     </div>
     <script type="module" src="js/duvidas.js"></script>
-    <script type="module" src="js/chatFAQ.js"></script>
-
 
 </body>
 </html>
