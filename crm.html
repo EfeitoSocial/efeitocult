@@ -44,6 +44,7 @@
                         <option value="">Selecione um Funil</option>
                     </select>
                     <button id="new-funnel-button">Novo Funil</button>
+                    <button id="edit-funnel-button">Editar Funil</button>
                     <button id="delete-funnel-button" class="btn-danger">Apagar Funil</button>
                 </div>
                 <div class="admin-actions">
@@ -79,12 +80,30 @@
         </div>
     </div>
 
+    <!-- Modal para Chat do WhatsApp -->
+    <div id="whatsapp-chat-modal" class="modal" style="display: none;">
+        <div class="modal-content chat-modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="chat-modal-title">Conversa com...</h2>
+            <div class="whatsapp-chat-container">
+                <div id="whatsapp-history" class="whatsapp-history">
+                    <!-- Histórico de mensagens será carregado aqui -->
+                </div>
+                <div class="whatsapp-input-area">
+                    <textarea id="whatsapp-message" placeholder="Digite sua mensagem..."></textarea>
+                    <button type="button" id="send-whatsapp-button">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal para Novo Funil -->
     <div id="funnel-modal" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h2>Novo Funil</h2>
             <form id="funnel-form">
+                <input type="hidden" id="funnel-id">
                 <div class="form-group">
                     <label for="funnel-name">Nome do Funil</label>
                     <input type="text" id="funnel-name" required>

@@ -105,54 +105,55 @@ cpfInput.addEventListener('input', (e) => {
 
     //Validação
 let cpfValido = true;
-function validacaoCPF(cpf){
-    let cpfNum = formatText(cpf.value);
-    /*
-    var soma;
-    var resto;
-    soma = 0;
-    if(cpfNum.length != 11 ||
-        cpfNum == "00000000000" ||
-        cpfNum == "11111111111" ||
-        cpfNum == "22222222222" ||
-        cpfNum == "33333333333" ||
-        cpfNum == "44444444444" ||
-        cpfNum == "55555555555" ||
-        cpfNum == "66666666666" ||
-        cpfNum == "77777777777" ||
-        cpfNum == "88888888888" ||
-        cpfNum == "99999999999"){
+function validacaoCPF(cpf) {
+    const cpfLimpo = formatText(cpf.value);
+    if (cpfLimpo.length !== 11 || /^(.)\1+$/.test(cpfLimpo)) {
         document.getElementById("cpf").classList.add('warning-border');
         document.getElementById("warning-cpf").classList.remove('hidden');
         cpfValido = false;
         return false;
     }
-        
-    for (i=0; i<9; i++) soma = soma + parseInt(cpfNum.charAt(i)) * (10 - i);
+
+    let soma = 0;
+    let resto;
+
+    for (let i = 0; i < 9; i++) {
+        soma += parseInt(cpfLimpo.charAt(i)) * (10 - i);
+    }
+
     resto = 11 - (soma % 11);
-    if((resto == 10) || (resto == 11)) resto = 0;
-    if(resto != parseInt(cpfNum.charAt(9))){
+    if (resto === 10 || resto === 11) {
+        resto = 0;
+    }
+
+    if (resto !== parseInt(cpfLimpo.charAt(9))) {
         document.getElementById("cpf").classList.add('warning-border');
         document.getElementById("warning-cpf").classList.remove('hidden');
         cpfValido = false;
         return false;
     }
-            
+
     soma = 0;
-    for(i=0; i<10; i++) soma = soma + parseInt(cpfNum.charAt(i) * (11 - i));
+    for (let i = 0; i < 10; i++) {
+        soma += parseInt(cpfLimpo.charAt(i)) * (11 - i);
+    }
+
     resto = 11 - (soma % 11);
-    if((resto === 10) || (resto === 11)) resto = 0;
-    if(resto != parseInt(cpfNum.charAt(10))){
+    if (resto === 10 || resto === 11) {
+        resto = 0;
+    }
+
+    if (resto !== parseInt(cpfLimpo.charAt(10))) {
         document.getElementById("cpf").classList.add('warning-border');
         document.getElementById("warning-cpf").classList.remove('hidden');
         cpfValido = false;
         return false;
     }
+
     document.getElementById("cpf").classList.remove('warning-border');
     document.getElementById("warning-cpf").classList.add('hidden');
     cpfValido = true;
     return true;
-    */
 }
 cpfInput.onblur = function(){validacaoCPF(cpfInput)};
 
