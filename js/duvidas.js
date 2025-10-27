@@ -50,11 +50,14 @@ contactForm.addEventListener('submit', async (e) => {
 
     const assunto = document.getElementById('assunto').value;
     const mensagem = document.getElementById('mensagem').value;
+    const contato = document.getElementById('contato').value
+    const meioDeContato = document.getElementById('meio-contato').value
 
     try {
         await addDoc(collection(db, "contactMessages"), {
             userId: user.uid,
-            email: user.email,
+            contactMedium: meioDeContato,
+            contact: contato,
             subject: assunto,
             message: mensagem,
             createdAt: new Date()
