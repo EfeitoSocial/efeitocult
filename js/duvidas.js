@@ -92,6 +92,8 @@ function getChatId() {
 
 // Send message to n8n webhook
 function sendMessage(message){
+    document.getElementById("chat-widget-input").readOnly = true;
+    document.getElementById("chat-widget-input").placeholder = "Pensando...";
     if (message.trim() === "") return;
 
     let chatBody = document.getElementById("chat-widget-body");
@@ -121,12 +123,13 @@ function sendMessage(message){
         botMessage.style.background = "#003A60";
         botMessage.style.marginTop = "10px";
         chatBody.appendChild(botMessage);
+        document.getElementById("chat-widget-input").readOnly = false;
+        document.getElementById("chat-widget-input").placeholder = "Pergunte alguma coisa";
     })
     .catch(error => console.error("Error:", error));
 
     document.getElementById("chat-widget-input").value = "";
 };
-
 document.getElementById("chat-widget-send").addEventListener("click", function(){ sendMessage(document.getElementById("chat-widget-input").value); });
 document.getElementById("chat-widget-input").addEventListener("keydown", function(e){ 
     if(e.key == "Enter"){
