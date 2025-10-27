@@ -33,11 +33,16 @@ const renderInvestments = (investments) => {
     receiptsList.innerHTML = ''; // Clear the list before rendering
 
     // Calculate the total investment potential
-    const totalPotential = investments.reduce((sum, inv) => sum + inv.amount, 0);
-    potentialValueSpan.textContent = formatCurrency(totalPotential);
+    //const totalPotential = investments.reduce((sum, inv) => (0 + inv.amount),  0);
+    const totalPotential = investments.sort((a, b) => new Date(b.date) - new Date(a.date));
+    potentialValueSpan.textContent = formatCurrency(totalPotential[0].amount);
 
     if (investments.length === 0) {
         receiptsSection.style.display = 'none'; // Hide if no investments
+        return;
+    }
+    if (investments.length === investments.projectName('Potencial Salvo').length) {
+        receiptsSection.style.display = 'none'; // Hide if just potencial
         return;
     }
     
@@ -56,18 +61,20 @@ const renderInvestments = (investments) => {
 
         const projectName = inv.projectName || 'Investimento Social';
 
-        item.innerHTML = `
-            <div class="receipt-info">
-                <span class="project-name">${projectName}</span>
-                <span class="receipt-date">${formatDate(inv.date)}</span>
-                <span class="receipt-amount">${formatCurrency(inv.amount)}</span>
-            </div>
-            <div class="receipt-actions">
-                ${actionButtons}
-                <button class="btn-delete">Excluir</button>
-            </div>
-        `;
-        receiptsList.appendChild(item);
+        if(projectName != 'Potencial Salvo'){
+            item.innerHTML = `
+                <div class="receipt-info">
+                    <span class="project-name">${projectName}</span>
+                    <span class="receipt-date">${formatDate(inv.date)}</span>
+                    <span class="receipt-amount">${formatCurrency(inv.amount)}</span>
+                </div>
+                <div class="receipt-actions">
+                    ${actionButtons}
+                    <button class="btn-delete">Excluir</button>
+                </div>
+            `;
+            receiptsList.appendChild(item);
+        }
     });
 };
 
