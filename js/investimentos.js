@@ -30,12 +30,20 @@ const renderInvestments = (investments, selectedYear) => {
     let pendingNotifications = 0;
 
     const filteredInvestments = investments.filter(inv => new Date(inv.date).getFullYear().toString() === selectedYear);
+    let i = filteredInvestments.length;
+    filteredInvestments.forEach(element => {
+        if(element.projectName != 'Potencial Salvo'){
+            i++;            
+        }else{
+            i--;
+        }
+    });
 
-    if (filteredInvestments.length === 0) {
+    if (i === 0) {
         investmentsList.innerHTML = '<p>Nenhum investimento encontrado para este ano.</p>';
         return;
     }
-
+    
     filteredInvestments.forEach(inv => {
         if (inv.status === 'pending_receipt') {
             pendingNotifications++;
@@ -64,7 +72,6 @@ const renderInvestments = (investments, selectedYear) => {
                 `;
                 break;
         }
-
         card.innerHTML = `
             <div class="investment-info">
                 <span class="project-name">${inv.projectName || 'Investimento Social'}</span>
@@ -78,12 +85,14 @@ const renderInvestments = (investments, selectedYear) => {
         investmentsList.appendChild(card);
     });
 
+
     if (pendingNotifications > 0) {
         notificationBadge.textContent = pendingNotifications;
         notificationBadge.style.display = 'inline-block';
     } else {
         notificationBadge.style.display = 'none';
     }
+    
 };
 
 // --- BUSCA DE DADOS ---
@@ -107,9 +116,9 @@ const fetchUserData = async (uid) => {
         const investmentsColRef = collection(db, "users", uid, "investments");
         const investmentsSnapshot = await getDocs(investmentsColRef);
         const investments = investmentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        
-        const totalPotential = investments.reduce((sum, inv) => sum + inv.amount, 0);
-        potentialValueSpan.textContent = formatCurrency(totalPotential);
+
+        const totalPotential = investments.sort((a, b) => new Date(b.date) - new Date(a.date));
+        potentialValueSpan.textContent = formatCurrency(totalPotential[0].amount);
 
         renderInvestments(investments, yearFilter.value);
 
