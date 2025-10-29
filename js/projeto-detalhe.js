@@ -67,7 +67,7 @@ doneButton.addEventListener('click', async () => {
 
     if (user && projectId){
         try {
-            /*
+            
             await addDoc(collection(db, "donations"), {
                 userId: user.uid,
                 projectId: projectId,
@@ -75,9 +75,9 @@ doneButton.addEventListener('click', async () => {
                 amount: amountValue,
                 date: new Date().toISOString(),
                 receiptUrl: null,
-                status: 'pending'
+                status: 'pending_receipt'
             });
-            */
+            
             await addDoc(collection(db, "users", user.uid, "investments"), {
                 projectId: projectId,
                 projectName: projectNm,
