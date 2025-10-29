@@ -30,16 +30,8 @@ const renderInvestments = (investments, selectedYear) => {
     let pendingNotifications = 0;
 
     const filteredInvestments = investments.filter(inv => new Date(inv.date).getFullYear().toString() === selectedYear);
-    let i = filteredInvestments.length;
-    filteredInvestments.forEach(element => {
-        if(element.projectName != 'Potencial Salvo'){
-            i++;            
-        }else{
-            i--;
-        }
-    });
 
-    if (i === 0) {
+    if (filteredInvestments == 0) {
         investmentsList.innerHTML = '<p>Nenhum investimento encontrado para este ano.</p>';
         return;
     }
@@ -116,14 +108,13 @@ const fetchUserData = async (uid) => {
         const investmentsColRef = collection(db, "users", uid, "investments");
         const investmentsSnapshot = await getDocs(investmentsColRef);
         const investments = investmentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        renderInvestments(investments, yearFilter.value);
 
         const potentialColRef = collection(db, "users", uid, "potential");
         const potentialSnapshot = await getDocs(potentialColRef);
         const potential = potentialSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         const totalPotential = potential.sort((a, b) => new Date(b.date) - new Date(a.date));
         potentialValueSpan.textContent = formatCurrency(totalPotential[0].amount);
-
-        renderInvestments(investments, yearFilter.value);
 
         yearFilter.addEventListener('change', () => {
             renderInvestments(investments, yearFilter.value);
