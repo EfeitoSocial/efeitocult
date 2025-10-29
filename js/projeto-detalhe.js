@@ -19,6 +19,7 @@ const progressBarFill = document.getElementById('progress-bar-fill');
 const progressPercentage = document.getElementById('progress-percentage');
 const userPotentialSpan = document.getElementById('user-potential');
 const investButton = document.getElementById('invest-button');
+const doneButton = document.getElementById('done');
 
 
 // --- HELPERS ---
@@ -45,26 +46,45 @@ logoutButton.addEventListener('click', (e) => {
 });
 
 investButton.addEventListener('click', async () => {
-    const amountValue = parseFloat(investmentAmountInput.value.replace(/[^0-9,-]+/g,"").replace(",","."));
-    if (isNaN(amountValue) || amountValue <= 0) {
+    const value = parseFloat(investmentAmountInput.value.replace(/[^0-9,-]+/g,"").replace(",","."));
+    if (isNaN(value) || value <= 0) {
         alert('Por favor, insira um valor de investimento válido.');
         return;
     }
+});
 
+doneButton.addEventListener('click', async () => {
+    const amountValue = parseFloat(investmentAmountInput.value.replace(/[^0-9,-]+/g,"").replace(",","."));
     const user = auth.currentUser;
     const urlParams = new URLSearchParams(window.location.search);
     const projectId = urlParams.get('id');
+    let projectNm = '';
+    if(projectId == 'ifyrRrQLUs0a9VZAUmtm'){
+        projectNm = 'O futuro é para todos - Ano 2 (Estado do Paraná)';
+    }else if(projectId == 'AU62y1EDDjNh7YlGQpPS'){
+        projectNm = 'O futuro é para todos - Ano 3 (Estado de São Paulo)';
+    }
 
-    if (user && projectId) {
+    if (user && projectId){
         try {
+            /*
             await addDoc(collection(db, "donations"), {
                 userId: user.uid,
                 projectId: projectId,
-                value: amountValue,
-                donationDate: new Date(),
-                proofUrl: null,
-                proofStatus: 'pending',
-                receiptStatus: 'pending'
+                projectName: projectNm,
+                amount: amountValue,
+                date: new Date().toISOString(),
+                receiptUrl: null,
+                status: 'pending'
+            });
+            */
+            await addDoc(collection(db, "users", user.uid, "investments"), {
+                projectId: projectId,
+                projectName: projectNm,
+                amount: amountValue,
+                date: new Date().toISOString(),
+                receiptUrl: null,
+                status: 'pending_receipt'
             });
             alert('Investimento registrado com sucesso! Por favor, envie o comprovante na página "Meus Investimentos".');
             window.location.href = 'investimentos.html';
@@ -74,6 +94,7 @@ investButton.addEventListener('click', async () => {
         }
     }
 });
+
 
 // --- USER POTENCIAL ---
 const fetchUserData = async (uid) => {
@@ -105,5 +126,5 @@ investmentAmountInput.addEventListener('input', (e) => {
     let value = e.target.value.replace(/\D/g, '');
     value = (parseInt(value, 10) / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
     e.target.value = value === 'NaN' ? '' : 'R$' + value;
-    investmentAmountSpan.textContent = value === 'NaN' ? '' : 'R$' + value;
+    investmentAmountSpan.textContent = value === 'NaN' ? '' : 'R$ ' + value;
 });
