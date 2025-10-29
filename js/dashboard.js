@@ -106,10 +106,13 @@ const fetchUserData = async (uid) => {
         const investmentsSnapshot = await getDocs(investmentsColRef);
         const investments = investmentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         renderInvestments(investments);
+        
         const potentialColRef = collection(db, "users", uid, "potential");
         const potentialSnapshot = await getDocs(potentialColRef);
         const potential = potentialSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        renderPotential(potential);
+        const totalPotential = potential.sort((a, b) => new Date(b.date) - new Date(a.date));
+        potentialValueSpan.textContent = formatCurrency(totalPotential[0].amount);
+
     } catch (error) {
         console.error("Error fetching user investments:", error);
     }
