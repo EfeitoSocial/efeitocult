@@ -27,3 +27,12 @@ loginForm.addEventListener('submit', async (e) => {
         }
     }
 });
+
+const eye = document.getElementById('passEye');
+eye.addEventListener('click', (e) => {
+    if(document.getElementById('password').type == 'password'){
+        document.getElementById('password').type = 'text';
+    }else{
+        document.getElementById('password').type = 'password';
+    }
+});
