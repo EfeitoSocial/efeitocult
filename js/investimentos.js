@@ -7,6 +7,8 @@ import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/fireba
 const userNameSpan = document.getElementById('user-name');
 const logoutButton = document.getElementById('logout-button');
 const potentialValueSpan = document.getElementById('potential-value');
+const destinedValueSpan = document.getElementById('destined-value');
+const remainderValueSpan = document.getElementById('remainder-value');
 const investmentsList = document.getElementById('investments-list');
 const yearFilter = document.getElementById('year-filter');
 const notificationBadge = document.querySelector('.notification-badge');
@@ -115,6 +117,16 @@ const fetchUserData = async (uid) => {
         const potential = potentialSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         const totalPotential = potential.sort((a, b) => new Date(b.date) - new Date(a.date));
         potentialValueSpan.textContent = formatCurrency(totalPotential[0].amount);
+
+        let sum = 0;
+        investments.forEach(element => {
+            sum += element.amount;
+        });
+
+        const destinedValue = sum;
+        const remaninderValue = totalPotential[0].amount - sum;
+        destinedValueSpan.textContent = formatCurrency(destinedValue);
+        remainderValueSpan.textContent = formatCurrency(remaninderValue);
 
         yearFilter.addEventListener('change', () => {
             renderInvestments(investments, yearFilter.value);
