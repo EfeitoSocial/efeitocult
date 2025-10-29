@@ -32,17 +32,8 @@ const formatDate = (isoString) => {
 const renderInvestments = (investments) => {
     receiptsList.innerHTML = ''; // Clear the list before rendering
 
-    // Calculate the total investment potential
-    //const totalPotential = investments.reduce((sum, inv) => (0 + inv.amount),  0);
-    const totalPotential = investments.sort((a, b) => new Date(b.date) - new Date(a.date));
-    potentialValueSpan.textContent = formatCurrency(totalPotential[0].amount);
-
     if (investments.length === 0) {
         receiptsSection.style.display = 'none'; // Hide if no investments
-        return;
-    }
-    if (investments.length === investments.projectName('Potencial Salvo').length) {
-        receiptsSection.style.display = 'none'; // Hide if just potencial
         return;
     }
     
@@ -78,6 +69,12 @@ const renderInvestments = (investments) => {
     });
 };
 
+const renderPotential = (potential) =>{
+    // Calculate the total investment potential
+    const totalPotential = potential.sort((a, b) => new Date(b.date) - new Date(a.date));
+    potentialValueSpan.textContent = formatCurrency(totalPotential[0].amount);
+}
+
 // --- DATA FETCHING ---
 const fetchUserData = async (uid) => {
     // Step 1: Fetch user profile data
@@ -109,6 +106,10 @@ const fetchUserData = async (uid) => {
         const investmentsSnapshot = await getDocs(investmentsColRef);
         const investments = investmentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         renderInvestments(investments);
+        const potentialColRef = collection(db, "users", uid, "potential");
+        const potentialSnapshot = await getDocs(potentialColRef);
+        const potential = potentialSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        renderPotential(potential);
     } catch (error) {
         console.error("Error fetching user investments:", error);
     }
@@ -142,7 +143,7 @@ calculatorForm.addEventListener('submit', (e) => {
 
     const investmentPotential = taxDue * 0.06;
     investmentPotentialResult.textContent = formatCurrency(investmentPotential);
-    currentInvestmentPotential = investmentPotential; // Store the value for the save button
+    currentInvestmentPotential = investmentPotential; // Store the value for the save button//
 });
 
 savePotentialButton.addEventListener('click', async () => {
@@ -152,20 +153,34 @@ savePotentialButton.addEventListener('click', async () => {
     }
 
     const user = auth.currentUser;
+    //const potencialList = collection(db, "users", user.uid, "investments");
+    //const potencialId = "zhksyrpJSBCRK2jXl3gQ";
     if (user) {
         try {
-            const investmentsColRef = collection(db, "users", user.uid, "investments");
-            await addDoc(investmentsColRef, {
-                amount: currentInvestmentPotential,
-                date: new Date().toISOString(),
-                status: 'pending_receipt',
-                receiptUrl: null,
-                projectName: 'Potencial Salvo'
-            });
+            const potentialColRef = collection(db, "users", user.uid, "potential");
+            const potentialSnapshot = await getDocs(potentialColRef);
+            const potential = potentialSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            if(potential.length === 0){
+                await addDoc(potentialColRef, {
+                    amount: currentInvestmentPotential,
+                    date: new Date().toISOString(),
+                });
+            }else{
+                //const potencialId = '';
+                potentialSnapshot.forEach(element => {
+                    //potencialId = element.id;
+                    updateDoc(doc(potentialColRef, element.id), {
+                        amount: currentInvestmentPotential,
+                        date: new Date().toISOString(),
+                    });
+                });
+            }
+            
             alert('Potencial de investimento salvo com sucesso!');
             fetchUserData(user.uid); // Refresh the list
             currentInvestmentPotential = 0; // Reset after saving
             investmentPotentialResult.textContent = formatCurrency(0); // Also reset the display
+            //deleteDoc(doc(potentialList, potencialId));
         } catch (error) {
             console.error("Error saving investment: ", error);
             alert('Ocorreu um erro ao salvar seu potencial.');
