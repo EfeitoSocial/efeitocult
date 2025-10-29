@@ -78,12 +78,12 @@ investButton.addEventListener('click', async () => {
 // --- USER POTENCIAL ---
 const fetchUserData = async (uid) => {
     try {
-        const investmentsColRef = collection(db, "users", uid, "investments");
-        const investmentsSnapshot = await getDocs(investmentsColRef);
-        const investments = investmentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const potentialColRef = collection(db, "users", uid, "potential");
+        const potentialSnapshot = await getDocs(potentialColRef);
+        const potential = potentialSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         
-        const totalPotential = investments.reduce((sum, inv) => sum + inv.amount, 0);
-        userPotentialSpan.textContent = formatCurrency(totalPotential);
+        const totalPotential = potential.sort((a, b) => new Date(b.date) - new Date(a.date));
+        userPotentialSpan.textContent = formatCurrency(totalPotential[0].amount);
 
     } catch (error) {
         console.error("Erro ao buscar investimentos:", error);
