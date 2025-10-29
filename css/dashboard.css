@@ -899,6 +899,9 @@ body {
     font-weight: 600;
     margin-bottom: 16px;
 }
+#end{
+    margin-top: 30px;
+}
 
 .form-grid {
     display: grid;
@@ -932,8 +935,6 @@ body {
 
 .cep-group {
     display: flex;
-    align-items: flex-end;
-    gap: 8px;
 }
 
 .cep-group input {
@@ -946,6 +947,8 @@ body {
     border: 1px solid #CED4DA;
     border-radius: 8px;
     cursor: pointer;
+    margin-top: 8px;
+    align-self: flex-end;
 }
 
 .checkbox-group {
