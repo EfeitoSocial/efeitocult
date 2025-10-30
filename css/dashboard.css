@@ -515,7 +515,7 @@ body {
 .receipt-actions {
     display: flex;
     align-items: center;
-    gap: 12px;]
+    gap: 12px;
     max-width: 30%;
 }
 
@@ -1502,7 +1502,7 @@ body {
     font-size: 32px;
     margin-bottom: 30px;
 }
-#amount{
+#donations{
     font-size: 20px;
     margin: 10px 0;
 }
