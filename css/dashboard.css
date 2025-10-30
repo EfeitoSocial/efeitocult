@@ -515,7 +515,8 @@ body {
 .receipt-actions {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 12px;]
+    max-width: 30%;
 }
 
 .receipt-actions button {
