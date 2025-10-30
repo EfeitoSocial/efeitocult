@@ -18,8 +18,11 @@ const raisedAmount = document.getElementById('raised-amount');
 const progressBarFill = document.getElementById('progress-bar-fill');
 const progressPercentage = document.getElementById('progress-percentage');
 const userPotentialSpan = document.getElementById('user-potential');
+const donationsText = document.getElementById('donations');
 const investButton = document.getElementById('invest-button');
 const doneButton = document.getElementById('done');
+const urlParams = new URLSearchParams(window.location.search);
+const curProjectId = urlParams.get('id');
 
 
 // --- HELPERS ---
@@ -56,21 +59,19 @@ investButton.addEventListener('click', async () => {
 doneButton.addEventListener('click', async () => {
     const amountValue = parseFloat(investmentAmountInput.value.replace(/[^0-9,-]+/g,"").replace(",","."));
     const user = auth.currentUser;
-    const urlParams = new URLSearchParams(window.location.search);
-    const projectId = urlParams.get('id');
     let projectNm = '';
-    if(projectId == 'ifyrRrQLUs0a9VZAUmtm'){
+    if(curProjectId == 'ifyrRrQLUs0a9VZAUmtm'){
         projectNm = 'O futuro é para todos - Ano 2 (Estado do Paraná)';
-    }else if(projectId == 'AU62y1EDDjNh7YlGQpPS'){
+    }else if(curProjectId == 'AU62y1EDDjNh7YlGQpPS'){
         projectNm = 'O futuro é para todos - Ano 3 (Estado de São Paulo)';
     }
 
-    if (user && projectId){
+    if (user && curProjectId){
         try {
             
             await addDoc(collection(db, "donations"), {
                 userId: user.uid,
-                projectId: projectId,
+                projectId: curProjectId,
                 projectName: projectNm,
                 amount: amountValue,
                 date: new Date().toISOString(),
@@ -79,7 +80,7 @@ doneButton.addEventListener('click', async () => {
             });
             
             await addDoc(collection(db, "users", user.uid, "investments"), {
-                projectId: projectId,
+                projectId: curProjectId,
                 projectName: projectNm,
                 amount: amountValue,
                 date: new Date().toISOString(),
@@ -128,3 +129,17 @@ investmentAmountInput.addEventListener('input', (e) => {
     e.target.value = value === 'NaN' ? '' : 'R$' + value;
     investmentAmountSpan.textContent = value === 'NaN' ? '' : 'R$ ' + value;
 });
+
+
+// ---AMOUNT GATHERED---
+let donAmount = 0;
+donationsText.textContent = formatCurrency(donAmount);
+
+let percentage = 0;
+if(curProjectId == "ifyrRrQLUs0a9VZAUmtm"){
+    percentage = (0 / 4288354.75) * 100;
+}else if(curProjectId == "AU62y1EDDjNh7YlGQpPS"){
+    percentage = (0 / 4620560.21) * 100;
+}
+progressBarFill.style.width = `${percentage*4}%`;
+progressPercentage.textContent = `${percentage.toFixed(0)}%`;
