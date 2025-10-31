@@ -1,6 +1,6 @@
-import { db, auth } from './firebase.js';
+import { db, auth, storage } from './firebase.js';
 import { createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { doc, setDoc, getDoc, collection, getDocs, deleteDoc, updateDoc, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const registerForm = document.getElementById('registerForm');
 
@@ -85,21 +85,61 @@ registerForm.addEventListener('submit', async (e) => {
 
         // Step 3: Save additional user info in Firestore
         // We use the user's UID from Authentication as the document ID in Firestore
-        await setDoc(doc(db, "users", user.uid), {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            cpf: cpf,
-            phone: phone,
-            address: {bairro: "", cep: "", cidade: "", complemento:"", estado: "", numero:"", rua: ""},
-            professional: {cargo: "", empresa: "", faixaSalarial: ""},
-            acceptsUpdates: false,
-            createdAt: new Date()
+        const usersColRef = collection(db, "users");
+        const usersSnapshot = await getDocs(usersColRef);
+        const users = usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        let i = 0;
+        let elementId = "";
+        users.forEach(element => {
+            if(element.cpf == cpf){
+                i++;
+                elementId = element.id;
+            }
         });
+
+        if(i == 0){
+            setDoc(doc(db, "users", user.uid), {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                cpf: cpf,
+                phone: phone,
+                address: {bairro: "", cep: "", cidade: "", complemento:"", estado: "", numero:"", rua: ""},
+                professional: {cargo: "", empresa: "", faixaSalarial: ""},
+                acceptsUpdates: false,
+                createdAt: new Date().toISOString(),
+                isAdmin: false
+            });
+        }else{
+            updateDoc(doc(db, "users", elementId), {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                cpf: cpf,
+                phone: phone,
+                address: {bairro: "", cep: "", cidade: "", complemento:"", estado: "", numero:"", rua: ""},
+                professional: {cargo: "", empresa: "", faixaSalarial: ""},
+            });
+            const donationsColRef = collection(db, "donations");
+            const donationsSnapshot = await getDocs(donationsColRef);
+            const donations = donationsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            donations.forEach(element => {
+                if(element.cpf == cpf){
+                    addDoc(collection(db, "users", elementId, "investments"), {
+                        projectId: element.projectId,
+                        projectName: element.projectName,
+                        amount: element.amount,
+                        date: element.date,
+                        receiptUrl: element.receiptUrl,
+                        status: 'receipt_uploaded'
+                    });
+                }
+            });
+        }
 
         alert('Cadastro realizado com sucesso! Você será redirecionado para o login.');
         registerForm.reset();
-        
+
         // Redirect to login page after a short delay
         setTimeout(() => {
             window.location.href = 'login.html';
