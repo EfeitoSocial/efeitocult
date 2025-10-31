@@ -15,27 +15,43 @@ leadForm.addEventListener('submit', async (e) => {
         const email = document.getElementById('email').value;
         const cep = document.getElementById('cep').value;
         const address = document.getElementById('address').value;
-        const project = document.getElementById('project').value;
+        const projectNm = document.getElementById('project').value;
         const amount = document.getElementById('amount').value;
         const upload = document.getElementById('upload').value;
         const terms = document.getElementById('terms').value;
 
         try {
-            await addDoc(collection(db, "leads"), {
-                name: name,
-                surname: surname,
+            await addDoc(collection(db, "users"), {
+                firstName: name,
+                lastName: surname,
                 cpf: formatText(cpf),
                 phone: formatText(phone),
                 email: email,
-                cep: formatText(cep),
-                address: address,
-                project: project,
-                amount: formatText(amount),
-                upload: upload,
-                terms: terms,
-                status: 'Novo',
-                createdAt: new Date()
+                address: {bairro: "", cep: formatText(cep), cidade: "", complemento:"", estado: "", numero:"", rua: "", formInput: address},
+                professional: {cargo: "", empresa: "", faixaSalarial: ""},
+                acceptsUpdates: false,  
+                createdAt: new Date().toISOString(),
+                isAdmin: false
             });
+
+            let projectId = "";
+            if(projectNm == 'O futuro é para todos - Ano 2 (Estado do Paraná)'){
+                projectId = 'ifyrRrQLUs0a9VZAUmtm';
+            }else if(projectNm == 'O futuro é para todos - Ano 3 (Estado de São Paulo)'){
+                projectId = 'AU62y1EDDjNh7YlGQpPS';
+            }
+            
+            await addDoc(collection(db, "donations"),{
+                projectId: projectId,
+                projectName: projectNm,
+                amount: formatText(amount)/100,
+                date: new Date().toISOString(),
+                receiptUrl: upload,
+                status: 'receipt_uploaded',
+                cpf: formatText(cpf),
+                terms: terms
+            });
+
             alert('Obrigado por seu interesse! Entraremos em contato em breve.');
             leadForm.reset();
         } catch (error) {
