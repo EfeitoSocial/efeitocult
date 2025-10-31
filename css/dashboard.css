@@ -1399,6 +1399,9 @@ body {
     gap: 12px;
     margin: 40px 0;
 }
+.project-category-detail img{
+    max-width: 35px;
+}
 #project-name{
     margin-bottom: 40px;;
 }
