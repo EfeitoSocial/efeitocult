@@ -1684,7 +1684,7 @@ body {
     padding-top: 12px;
     padding-bottom: 12px;
     display: grid;
-    grid-template-columns: 7fr 1fr;
+    grid-template-columns: 8fr 1fr;
     gap: 10px;
 }
 .chat-widget-footer button{
@@ -1731,4 +1731,11 @@ body {
     border: 1px solid #003A60;
     border-radius: 20px;
     cursor: pointer;
+}
+
+.hidden{
+    display: none;
+}
+.payment-info h4{
+    margin-top: 200px;
 }
