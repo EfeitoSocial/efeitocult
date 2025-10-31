@@ -8,6 +8,8 @@ const logoutButton = document.getElementById('logout-button');
 const calculatorForm = document.getElementById('calculator-form');
 const taxDueInput = document.getElementById('tax-due');
 const potentialValueSpan = document.getElementById('potential-value');
+const destinedValueSpan = document.getElementById('destined-value');
+const remainderValueSpan = document.getElementById('remainder-value');
 const investmentPotentialResult = document.getElementById('investment-potential-result');
 const receiptsSection = document.getElementById('receipts-section');
 const receiptsList = document.getElementById('receipts-list');
@@ -113,6 +115,15 @@ const fetchUserData = async (uid) => {
         const totalPotential = potential.sort((a, b) => new Date(b.date) - new Date(a.date));
         potentialValueSpan.textContent = formatCurrency(totalPotential[0].amount);
 
+        let sum = 0;
+        investments.forEach(element => {
+            sum += element.amount;
+        });
+
+        const destinedValue = sum;
+        const remaninderValue = totalPotential[0].amount - sum;
+        destinedValueSpan.textContent = formatCurrency(destinedValue);
+        remainderValueSpan.textContent = formatCurrency(remaninderValue);
     } catch (error) {
         console.error("Error fetching user investments:", error);
     }
