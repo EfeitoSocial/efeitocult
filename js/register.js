@@ -91,6 +91,9 @@ registerForm.addEventListener('submit', async (e) => {
             email: email,
             cpf: cpf,
             phone: phone,
+            address: {bairro: "", cep: "", cidade: "", complemento:"", estado: "", numero:"", rua: ""},
+            professional: {cargo: "", empresa: "", faixaSalarial: ""},
+            acceptsUpdates: false,
             createdAt: new Date()
         });
 
